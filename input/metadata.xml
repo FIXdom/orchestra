@@ -1,0 +1,11 @@
+<fixr:metadata xmlns:fixr="http://fixprotocol.io/2020/orchestra/repository" xmlns:dcterms="http://purl.org/dc/terms/">
+  <dcterms:description>QuickFIX data dictionary file converted to an Orchestra XML file.</dcterms:description>
+  <dcterms:title>QuickFIX2Orchestra</dcterms:title>
+  <dcterms:creator>Hanno Klein, FIXdom, Germany</dcterms:creator>
+  <dcterms:rights>Copyright (c) FIX Protocol Ltd. All Rights Reserved.</dcterms:rights>
+  <dcterms:publisher>Hanno Klein, FIXdom, Germany</dcterms:publisher>
+  <dcterms:format>application/xml</dcterms:format>
+  <dcterms:conformsTo>Orchestra v1.0</dcterms:conformsTo>
+  <dcterms:created>2026-10-01</dcterms:created>
+  <dcterms:source>QuickFIX Data Dictionary</dcterms:source>
+</fixr:metadata>

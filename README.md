@@ -1,4 +1,21 @@
-# orchestra
+# Orchestra
 This repository contains tools and information related to the [Orchestra Standard](https://fixtrading.org/standards/orchestra/) developed by the [FIX Trading Community](https://fixtrading.org/). The objective is to provide free tools under the Apache 2.0 licence that are useful to the financial community. These tools should not have to be implemented more than once and this repository intends to act as a hub and invites others to contribute.
 
 Electronic interfaces defined with Orchestra are machine-readable XML files. They can be visualised with [Orchimate](https://orchimate.org/), a browser tool offered free of charge by the FIX member firm [Atomic Wire](https://www.atomicwire.io/).
+
+## Transform QuickFIX to Orchestra
+This is an XSLT script that takes a standard QuickFIX data dictionary (XML file) and transforms it to an Orchestra V1.0 XML file. It is intended to jump start the process of using Orchestra for an existing FIX interface that has been implemented with QuickFIX. Once generated, the Orchestra XML files can be loaded into local memory with [Orchimate](https://orchimate.org/).
+
+A bash script is available to run the script under a UNIX-based OS. It expects the filename as first, a keyword for the FIX version as second, and the name of the Orchestra metadata file as third parameter. The QuickFIX file must be in a subfolder "input" and the Orchestra file will be generated in a subfolder "output" that needs to exist. The metadata file must be in the subfolder "lookup" and can be changed to reflect the actual creator, dates etc.
+
+> Usage example (): $./quick2orchestra.sh QFDD-FIX42 FIX42 metadata
+
+The FIX version parameter is used to pick the appropriate file with the list of numerical message, group, and component identifiers since QuickFIX files do not have this information. The version keywords "FIX42", "FIX44", and "FIXLatest" are pre-defined but are merely used to create the file names "lookup/Orchestra<FIX version>-messages/groups/components.txt". The keyword can actually be any string as long as the respective files exist in the subfolder "lookup".
+
+Orchestra code sets and codes require numerical identifiers. The identifiers of code sets are defined by the tag number of the field using the code set. The code identifiers are defined by concatenating the code set identifier and a 3-digit suffix (starting with "001"). This is the standard approach in FIX Latest.
+
+Note that QuickFIX does not support the use of enumerated field values across multiple fields, e.g. PartyRole(452) and NestedPartyRole(538). Each field must have its own list of enumerated values attached to it. The script will create an Orchestra code set for every field defined with one or more enumerated values. Manual post-processing is required to use the Orchestra-native possibility of assigning the same code set to two or more fields.
+
+QuickFIX data dictionaries for FIX 4.2, FIX 4.4, and FIX Latest are provided as examples in the folder "input" as well as the resulting Orchestra XML files in the folder "output".
+
+Note that the script adds the names of groups, components, fields referenced in messages, groups, components for convenience. This is not part of Orchestra V1.0 but will be supprted with Orchestra V1.1

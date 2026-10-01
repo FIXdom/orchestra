@@ -1,0 +1,2557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fixr:repository xmlns:fixr="http://fixprotocol.io/2020/orchestra/repository"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 name="FIX.4.2"
+                 version="FIX.4.2">
+   <fixr:metadata xmlns:dcterms="http://purl.org/dc/terms/">
+      <dcterms:description>QuickFIX data dictionary file converted to an Orchestra XML file.</dcterms:description>
+      <dcterms:title>QuickFIX2Orchestra</dcterms:title>
+      <dcterms:creator>Hanno Klein, FIXdom, Germany</dcterms:creator>
+      <dcterms:rights>Copyright (c) FIX Protocol Ltd. All Rights Reserved.</dcterms:rights>
+      <dcterms:publisher>Hanno Klein, FIXdom, Germany</dcterms:publisher>
+      <dcterms:format>application/xml</dcterms:format>
+      <dcterms:conformsTo>Orchestra v1.0</dcterms:conformsTo>
+      <dcterms:created>2026-10-01</dcterms:created>
+      <dcterms:source>QuickFIX Data Dictionary</dcterms:source>
+   </fixr:metadata>
+   <fixr:datatypes>
+      <fixr:datatype name="String">
+         <fixr:mappedDatatype standard="XML" builtin="true" base="xs:string"/>
+      </fixr:datatype>
+      <fixr:datatype name="char">
+         <fixr:mappedDatatype standard="XML" builtin="false" base="xs:string"/>
+      </fixr:datatype>
+      <fixr:datatype name="Price" baseType="float">
+         <fixr:mappedDatatype standard="XML" builtin="false" base="xs:decimal"/>
+      </fixr:datatype>
+      <fixr:datatype name="int">
+         <fixr:mappedDatatype standard="XML" builtin="true" base="xs:integer"/>
+      </fixr:datatype>
+      <fixr:datatype name="Amt" baseType="float">
+         <fixr:mappedDatatype standard="XML" builtin="false" base="xs:decimal"/>
+      </fixr:datatype>
+      <fixr:datatype name="Qty" baseType="float">
+         <fixr:mappedDatatype standard="XML" builtin="false" base="xs:decimal"/>
+      </fixr:datatype>
+      <fixr:datatype name="Currency" baseType="String">
+         <fixr:mappedDatatype standard="XML" builtin="false" base="xs:string" pattern=".3"/>
+      </fixr:datatype>
+      <fixr:datatype name="MultipleValueString" baseType="String">
+         <fixr:mappedDatatype standard="XML"
+                              builtin="false"
+                              base="xs:string"
+                              pattern=".+(\s.+)*"/>
+      </fixr:datatype>
+      <fixr:datatype name="Exchange" baseType="String">
+         <fixr:mappedDatatype standard="XML" builtin="false" base="xs:string"/>
+      </fixr:datatype>
+      <fixr:datatype name="UTCTimestamp">
+         <fixr:mappedDatatype standard="XML" builtin="false" base="xs:dateTime"/>
+      </fixr:datatype>
+      <fixr:datatype name="Boolean" baseType="char">
+         <fixr:mappedDatatype standard="XML"
+                              builtin="false"
+                              base="xs:boolean"
+                              pattern="[YN]1"/>
+      </fixr:datatype>
+      <fixr:datatype name="LocalMktDate">
+         <fixr:mappedDatatype standard="XML" builtin="false" base="xs:date"/>
+      </fixr:datatype>
+      <fixr:datatype name="data">
+         <fixr:mappedDatatype standard="XML" builtin="true" base="xs:base64Binary"/>
+      </fixr:datatype>
+      <fixr:datatype name="Length" baseType="int">
+         <fixr:mappedDatatype standard="XML" builtin="false" base="xs:nonNegativeInteger"/>
+      </fixr:datatype>
+      <fixr:datatype name="float">
+         <fixr:mappedDatatype standard="XML" builtin="true" base="xs:decimal"/>
+      </fixr:datatype>
+      <fixr:datatype name="PriceOffset" baseType="float">
+         <fixr:mappedDatatype standard="XML" builtin="false" base="xs:decimal"/>
+      </fixr:datatype>
+      <fixr:datatype name="MonthYear">
+         <fixr:mappedDatatype standard="XML"
+                              builtin="false"
+                              base="xs:string"
+                              pattern="\d4(0|1)\d([0-3wW]\d)?"/>
+      </fixr:datatype>
+      <fixr:datatype name="DayOfMonth" baseType="int">
+         <fixr:mappedDatatype standard="XML" builtin="false" base="xs:integer"/>
+      </fixr:datatype>
+      <fixr:datatype name="UTCDATE"/>
+      <fixr:datatype name="UTCTimeOnly">
+         <fixr:mappedDatatype standard="XML" builtin="false" base="xs:time"/>
+      </fixr:datatype>
+   </fixr:datatypes>
+   <fixr:codeSets>
+      <fixr:codeSet name="AdvSideCodeSet" id="4" type="char">
+         <fixr:code value="B" name="BUY" id="4001"/>
+         <fixr:code value="S" name="SELL" id="4002"/>
+         <fixr:code value="T" name="TRADE" id="4003"/>
+         <fixr:code value="X" name="CROSS" id="4004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="AdvTransTypeCodeSet" id="5" type="String">
+         <fixr:code value="C" name="CANCEL" id="5001"/>
+         <fixr:code value="N" name="NEW" id="5002"/>
+         <fixr:code value="R" name="REPLACE" id="5003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="CommTypeCodeSet" id="13" type="char">
+         <fixr:code value="1" name="PER_UNIT" id="13001"/>
+         <fixr:code value="2" name="PERCENT" id="13002"/>
+         <fixr:code value="3" name="ABSOLUTE" id="13003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="ExecInstCodeSet" id="18" type="MultipleValueString">
+         <fixr:code value="0" name="STAY_ON_OFFER_SIDE" id="18001"/>
+         <fixr:code value="1" name="NOT_HELD" id="18002"/>
+         <fixr:code value="2" name="WORK" id="18003"/>
+         <fixr:code value="3" name="GO_ALONG" id="18004"/>
+         <fixr:code value="4" name="OVER_THE_DAY" id="18005"/>
+         <fixr:code value="5" name="HELD" id="18006"/>
+         <fixr:code value="6" name="PARTICIPATE_DO_NOT_INITIATE" id="18007"/>
+         <fixr:code value="7" name="STRICT_SCALE" id="18008"/>
+         <fixr:code value="8" name="TRY_TO_SCALE" id="18009"/>
+         <fixr:code value="9" name="STAY_ON_BID_SIDE" id="18010"/>
+         <fixr:code value="A" name="NO_CROSS" id="18011"/>
+         <fixr:code value="B" name="OK_TO_CROSS" id="18012"/>
+         <fixr:code value="C" name="CALL_FIRST" id="18013"/>
+         <fixr:code value="D" name="PERCENT_OF_VOLUME" id="18014"/>
+         <fixr:code value="E" name="DO_NOT_INCREASE" id="18015"/>
+         <fixr:code value="F" name="DO_NOT_REDUCE" id="18016"/>
+         <fixr:code value="G" name="ALL_OR_NONE" id="18017"/>
+         <fixr:code value="I" name="INSTITUTIONS_ONLY" id="18018"/>
+         <fixr:code value="L" name="LAST_PEG" id="18019"/>
+         <fixr:code value="M" name="MID_PRICE_PEG" id="18020"/>
+         <fixr:code value="N" name="NON_NEGOTIABLE" id="18021"/>
+         <fixr:code value="O" name="OPENING_PEG" id="18022"/>
+         <fixr:code value="P" name="MARKET_PEG" id="18023"/>
+         <fixr:code value="R" name="PRIMARY_PEG" id="18024"/>
+         <fixr:code value="S" name="SUSPEND" id="18025"/>
+         <fixr:code value="T"
+                    name="FIXED_PEG_TO_LOCAL_BEST_BID_OR_OFFER_AT_TIME_OF_ORDER"
+                    id="18026"/>
+         <fixr:code value="U" name="CUSTOMER_DISPLAY_INSTRUCTION" id="18027"/>
+         <fixr:code value="V" name="NETTING" id="18028"/>
+         <fixr:code value="W" name="PEG_TO_VWAP" id="18029"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="ExecTransTypeCodeSet" id="20" type="char">
+         <fixr:code value="0" name="NEW" id="20001"/>
+         <fixr:code value="1" name="CANCEL" id="20002"/>
+         <fixr:code value="2" name="CORRECT" id="20003"/>
+         <fixr:code value="3" name="STATUS" id="20004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="HandlInstCodeSet" id="21" type="char">
+         <fixr:code value="1" name="AUTOMATED_EXECUTION_NO_INTERVENTION" id="21001"/>
+         <fixr:code value="2" name="AUTOMATED_EXECUTION_INTERVENTION_OK" id="21002"/>
+         <fixr:code value="3" name="MANUAL_ORDER" id="21003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="IDSourceCodeSet" id="22" type="String">
+         <fixr:code value="1" name="CUSIP" id="22001"/>
+         <fixr:code value="2" name="SEDOL" id="22002"/>
+         <fixr:code value="3" name="QUIK" id="22003"/>
+         <fixr:code value="4" name="ISIN_NUMBER" id="22004"/>
+         <fixr:code value="5" name="RIC_CODE" id="22005"/>
+         <fixr:code value="6" name="ISO_CURRENCY_CODE" id="22006"/>
+         <fixr:code value="7" name="ISO_COUNTRY_CODE" id="22007"/>
+         <fixr:code value="8" name="EXCHANGE_SYMBOL" id="22008"/>
+         <fixr:code value="9" name="CONSOLIDATED_TAPE_ASSOCIATION" id="22009"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="IOIQltyIndCodeSet" id="25" type="char">
+         <fixr:code value="H" name="HIGH" id="25001"/>
+         <fixr:code value="L" name="LOW" id="25002"/>
+         <fixr:code value="M" name="MEDIUM" id="25003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="IOISharesCodeSet" id="27" type="String">
+         <fixr:code value="L" name="LARGE" id="27001"/>
+         <fixr:code value="M" name="MEDIUM" id="27002"/>
+         <fixr:code value="S" name="SMALL" id="27003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="IOITransTypeCodeSet" id="28" type="char">
+         <fixr:code value="C" name="CANCEL" id="28001"/>
+         <fixr:code value="N" name="NEW" id="28002"/>
+         <fixr:code value="R" name="REPLACE" id="28003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="LastCapacityCodeSet" id="29" type="char">
+         <fixr:code value="1" name="AGENT" id="29001"/>
+         <fixr:code value="2" name="CROSS_AS_AGENT" id="29002"/>
+         <fixr:code value="3" name="CROSS_AS_PRINCIPAL" id="29003"/>
+         <fixr:code value="4" name="PRINCIPAL" id="29004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="MsgTypeCodeSet" id="35" type="String">
+         <fixr:code value="0" name="HEARTBEAT" id="35001"/>
+         <fixr:code value="1" name="TEST_REQUEST" id="35002"/>
+         <fixr:code value="2" name="RESEND_REQUEST" id="35003"/>
+         <fixr:code value="3" name="REJECT" id="35004"/>
+         <fixr:code value="4" name="SEQUENCE_RESET" id="35005"/>
+         <fixr:code value="5" name="LOGOUT" id="35006"/>
+         <fixr:code value="6" name="IOI" id="35007"/>
+         <fixr:code value="7" name="ADVERTISEMENT" id="35008"/>
+         <fixr:code value="8" name="EXECUTION_REPORT" id="35009"/>
+         <fixr:code value="9" name="ORDER_CANCEL_REJECT" id="35010"/>
+         <fixr:code value="A" name="LOGON" id="35011"/>
+         <fixr:code value="B" name="NEWS" id="35012"/>
+         <fixr:code value="C" name="EMAIL" id="35013"/>
+         <fixr:code value="D" name="NEW_ORDER_SINGLE" id="35014"/>
+         <fixr:code value="E" name="NEW_ORDER_LIST" id="35015"/>
+         <fixr:code value="F" name="ORDER_CANCEL_REQUEST" id="35016"/>
+         <fixr:code value="G" name="ORDER_CANCEL_REPLACE_REQUEST" id="35017"/>
+         <fixr:code value="H" name="ORDER_STATUS_REQUEST" id="35018"/>
+         <fixr:code value="J" name="ALLOCATION_INSTRUCTION" id="35019"/>
+         <fixr:code value="K" name="LIST_CANCEL_REQUEST" id="35020"/>
+         <fixr:code value="L" name="LIST_EXECUTE" id="35021"/>
+         <fixr:code value="M" name="LIST_STATUS_REQUEST" id="35022"/>
+         <fixr:code value="N" name="LIST_STATUS" id="35023"/>
+         <fixr:code value="P" name="ALLOCATION_INSTRUCTION_ACK" id="35024"/>
+         <fixr:code value="Q" name="DONT_KNOW_TRADE" id="35025"/>
+         <fixr:code value="R" name="QUOTE_REQUEST" id="35026"/>
+         <fixr:code value="S" name="QUOTE" id="35027"/>
+         <fixr:code value="T" name="SETTLEMENT_INSTRUCTIONS" id="35028"/>
+         <fixr:code value="V" name="MARKET_DATA_REQUEST" id="35029"/>
+         <fixr:code value="W" name="MARKET_DATA_SNAPSHOT_FULL_REFRESH" id="35030"/>
+         <fixr:code value="X" name="MARKET_DATA_INCREMENTAL_REFRESH" id="35031"/>
+         <fixr:code value="Y" name="MARKET_DATA_REQUEST_REJECT" id="35032"/>
+         <fixr:code value="Z" name="QUOTE_CANCEL" id="35033"/>
+         <fixr:code value="a" name="QUOTE_STATUS_REQUEST" id="35034"/>
+         <fixr:code value="b" name="MASS_QUOTE_ACKNOWLEDGEMENT" id="35035"/>
+         <fixr:code value="c" name="SECURITY_DEFINITION_REQUEST" id="35036"/>
+         <fixr:code value="d" name="SECURITY_DEFINITION" id="35037"/>
+         <fixr:code value="e" name="SECURITY_STATUS_REQUEST" id="35038"/>
+         <fixr:code value="f" name="SECURITY_STATUS" id="35039"/>
+         <fixr:code value="g" name="TRADING_SESSION_STATUS_REQUEST" id="35040"/>
+         <fixr:code value="h" name="TRADING_SESSION_STATUS" id="35041"/>
+         <fixr:code value="i" name="MASS_QUOTE" id="35042"/>
+         <fixr:code value="j" name="BUSINESS_MESSAGE_REJECT" id="35043"/>
+         <fixr:code value="k" name="BID_REQUEST" id="35044"/>
+         <fixr:code value="l" name="BID_RESPONSE" id="35045"/>
+         <fixr:code value="m" name="LIST_STRIKE_PRICE" id="35046"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="OrdStatusCodeSet" id="39" type="char">
+         <fixr:code value="0" name="NEW" id="39001"/>
+         <fixr:code value="1" name="PARTIALLY_FILLED" id="39002"/>
+         <fixr:code value="2" name="FILLED" id="39003"/>
+         <fixr:code value="3" name="DONE_FOR_DAY" id="39004"/>
+         <fixr:code value="4" name="CANCELED" id="39005"/>
+         <fixr:code value="5" name="REPLACED" id="39006"/>
+         <fixr:code value="6" name="PENDING_CANCEL" id="39007"/>
+         <fixr:code value="7" name="STOPPED" id="39008"/>
+         <fixr:code value="8" name="REJECTED" id="39009"/>
+         <fixr:code value="9" name="SUSPENDED" id="39010"/>
+         <fixr:code value="A" name="PENDING_NEW" id="39011"/>
+         <fixr:code value="B" name="CALCULATED" id="39012"/>
+         <fixr:code value="C" name="EXPIRED" id="39013"/>
+         <fixr:code value="D" name="ACCEPTED_FOR_BIDDING" id="39014"/>
+         <fixr:code value="E" name="PENDING_REPLACE" id="39015"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="OrdTypeCodeSet" id="40" type="char">
+         <fixr:code value="1" name="MARKET" id="40001"/>
+         <fixr:code value="2" name="LIMIT" id="40002"/>
+         <fixr:code value="3" name="STOP" id="40003"/>
+         <fixr:code value="4" name="STOP_LIMIT" id="40004"/>
+         <fixr:code value="5" name="MARKET_ON_CLOSE" id="40005"/>
+         <fixr:code value="6" name="WITH_OR_WITHOUT" id="40006"/>
+         <fixr:code value="7" name="LIMIT_OR_BETTER" id="40007"/>
+         <fixr:code value="8" name="LIMIT_WITH_OR_WITHOUT" id="40008"/>
+         <fixr:code value="9" name="ON_BASIS" id="40009"/>
+         <fixr:code value="A" name="ON_CLOSE" id="40010"/>
+         <fixr:code value="B" name="LIMIT_ON_CLOSE" id="40011"/>
+         <fixr:code value="C" name="FOREX_MARKET" id="40012"/>
+         <fixr:code value="D" name="PREVIOUSLY_QUOTED" id="40013"/>
+         <fixr:code value="E" name="PREVIOUSLY_INDICATED" id="40014"/>
+         <fixr:code value="F" name="FOREX_LIMIT" id="40015"/>
+         <fixr:code value="G" name="FOREX_SWAP" id="40016"/>
+         <fixr:code value="H" name="FOREX_PREVIOUSLY_QUOTED" id="40017"/>
+         <fixr:code value="I" name="FUNARI" id="40018"/>
+         <fixr:code value="P" name="PEGGED" id="40019"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="PossDupFlagCodeSet" id="43" type="Boolean">
+         <fixr:code value="N" name="NO" id="43001"/>
+         <fixr:code value="Y" name="YES" id="43002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="Rule80ACodeSet" id="47" type="char">
+         <fixr:code value="A" name="AGENCY_SINGLE_ORDER" id="47001"/>
+         <fixr:code value="B" name="SHORT_EXEMPT_TRANSACTION_A_TYPE" id="47002"/>
+         <fixr:code value="C" name="PROPRIETARY_NON_ALGO" id="47003"/>
+         <fixr:code value="D" name="PROGRAM_ORDER_MEMBER" id="47004"/>
+         <fixr:code value="E" name="SHORT_EXEMPT_TRANSACTION_FOR_PRINCIPAL" id="47005"/>
+         <fixr:code value="F" name="SHORT_EXEMPT_TRANSACTION_W_TYPE" id="47006"/>
+         <fixr:code value="H" name="SHORT_EXEMPT_TRANSACTION_I_TYPE" id="47007"/>
+         <fixr:code value="I" name="INDIVIDUAL_INVESTOR" id="47008"/>
+         <fixr:code value="J" name="PROPRIETARY_ALGO" id="47009"/>
+         <fixr:code value="K" name="AGENCY_ALGO" id="47010"/>
+         <fixr:code value="L"
+                    name="SHORT_EXEMPT_TRANSACTION_MEMBER_AFFLIATED"
+                    id="47011"/>
+         <fixr:code value="M" name="PROGRAM_ORDER_OTHER_MEMBER" id="47012"/>
+         <fixr:code value="N" name="AGENT_FOR_OTHER_MEMBER" id="47013"/>
+         <fixr:code value="O" name="PROPRIETARY_TRANSACTION_AFFILIATED" id="47014"/>
+         <fixr:code value="P" name="PRINCIPAL" id="47015"/>
+         <fixr:code value="R" name="TRANSACTION_NON_MEMBER" id="47016"/>
+         <fixr:code value="S" name="SPECIALIST_TRADES" id="47017"/>
+         <fixr:code value="T" name="TRANSACTION_UNAFFILIATED_MEMBER" id="47018"/>
+         <fixr:code value="U" name="AGENCY_INDEX_ARB" id="47019"/>
+         <fixr:code value="W"
+                    name="ALL_OTHER_ORDERS_AS_AGENT_FOR_OTHER_MEMBER"
+                    id="47020"/>
+         <fixr:code value="X"
+                    name="SHORT_EXEMPT_TRANSACTION_MEMBER_NOT_AFFLIATED"
+                    id="47021"/>
+         <fixr:code value="Y" name="AGENCY_NON_ALGO" id="47022"/>
+         <fixr:code value="Z" name="SHORT_EXEMPT_TRANSACTION_NON_MEMBER" id="47023"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SideCodeSet" id="54" type="char">
+         <fixr:code value="1" name="BUY" id="54001"/>
+         <fixr:code value="2" name="SELL" id="54002"/>
+         <fixr:code value="3" name="BUY_MINUS" id="54003"/>
+         <fixr:code value="4" name="SELL_PLUS" id="54004"/>
+         <fixr:code value="5" name="SELL_SHORT" id="54005"/>
+         <fixr:code value="6" name="SELL_SHORT_EXEMPT" id="54006"/>
+         <fixr:code value="7" name="UNDISCLOSED" id="54007"/>
+         <fixr:code value="8" name="CROSS" id="54008"/>
+         <fixr:code value="9" name="CROSS_SHORT" id="54009"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="TimeInForceCodeSet" id="59" type="char">
+         <fixr:code value="0" name="DAY" id="59001"/>
+         <fixr:code value="1" name="GOOD_TILL_CANCEL" id="59002"/>
+         <fixr:code value="2" name="AT_THE_OPENING" id="59003"/>
+         <fixr:code value="3" name="IMMEDIATE_OR_CANCEL" id="59004"/>
+         <fixr:code value="4" name="FILL_OR_KILL" id="59005"/>
+         <fixr:code value="5" name="GOOD_TILL_CROSSING" id="59006"/>
+         <fixr:code value="6" name="GOOD_TILL_DATE" id="59007"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="UrgencyCodeSet" id="61" type="char">
+         <fixr:code value="0" name="NORMAL" id="61001"/>
+         <fixr:code value="1" name="FLASH" id="61002"/>
+         <fixr:code value="2" name="BACKGROUND" id="61003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SettlmntTypCodeSet" id="63" type="char">
+         <fixr:code value="0" name="REGULAR" id="63001"/>
+         <fixr:code value="1" name="CASH" id="63002"/>
+         <fixr:code value="2" name="NEXT_DAY" id="63003"/>
+         <fixr:code value="3" name="T_PLUS2" id="63004"/>
+         <fixr:code value="4" name="T_PLUS3" id="63005"/>
+         <fixr:code value="5" name="T_PLUS4" id="63006"/>
+         <fixr:code value="6" name="FUTURE" id="63007"/>
+         <fixr:code value="7" name="WHEN_AND_IF_ISSUED" id="63008"/>
+         <fixr:code value="8" name="SELLERS_OPTION" id="63009"/>
+         <fixr:code value="9" name="T_PLUS5" id="63010"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="AllocTransTypeCodeSet" id="71" type="char">
+         <fixr:code value="0" name="NEW" id="71001"/>
+         <fixr:code value="1" name="REPLACE" id="71002"/>
+         <fixr:code value="2" name="CANCEL" id="71003"/>
+         <fixr:code value="3" name="PRELIMINARY" id="71004"/>
+         <fixr:code value="4" name="CALCULATED" id="71005"/>
+         <fixr:code value="5" name="CALCULATED_WITHOUT_PRELIMINARY" id="71006"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="OpenCloseCodeSet" id="77" type="char">
+         <fixr:code value="C" name="CLOSE" id="77001"/>
+         <fixr:code value="O" name="OPEN" id="77002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="ProcessCodeCodeSet" id="81" type="char">
+         <fixr:code value="0" name="REGULAR" id="81001"/>
+         <fixr:code value="1" name="SOFT_DOLLAR" id="81002"/>
+         <fixr:code value="2" name="STEP_IN" id="81003"/>
+         <fixr:code value="3" name="STEP_OUT" id="81004"/>
+         <fixr:code value="4" name="SOFT_DOLLAR_STEP_IN" id="81005"/>
+         <fixr:code value="5" name="SOFT_DOLLAR_STEP_OUT" id="81006"/>
+         <fixr:code value="6" name="PLAN_SPONSOR" id="81007"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="AllocStatusCodeSet" id="87" type="int">
+         <fixr:code value="0" name="ACCEPTED" id="87001"/>
+         <fixr:code value="1" name="BLOCK_LEVEL_REJECT" id="87002"/>
+         <fixr:code value="2" name="ACCOUNT_LEVEL_REJECT" id="87003"/>
+         <fixr:code value="3" name="RECEIVED" id="87004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="AllocRejCodeCodeSet" id="88" type="int">
+         <fixr:code value="0" name="UNKNOWN_ACCOUNT" id="88001"/>
+         <fixr:code value="1" name="INCORRECT_QUANTITY" id="88002"/>
+         <fixr:code value="2" name="INCORRECT_AVERAGEG_PRICE" id="88003"/>
+         <fixr:code value="3" name="UNKNOWN_EXECUTING_BROKER_MNEMONIC" id="88004"/>
+         <fixr:code value="4" name="COMMISSION_DIFFERENCE" id="88005"/>
+         <fixr:code value="5" name="UNKNOWN_ORDER_ID" id="88006"/>
+         <fixr:code value="6" name="UNKNOWN_LIST_ID" id="88007"/>
+         <fixr:code value="7" name="OTHER_SEE_TEXT" id="88008"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="EmailTypeCodeSet" id="94" type="char">
+         <fixr:code value="0" name="NEW" id="94001"/>
+         <fixr:code value="1" name="REPLY" id="94002"/>
+         <fixr:code value="2" name="ADMIN_REPLY" id="94003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="PossResendCodeSet" id="97" type="Boolean">
+         <fixr:code value="N" name="NO" id="97001"/>
+         <fixr:code value="Y" name="YES" id="97002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="EncryptMethodCodeSet" id="98" type="int">
+         <fixr:code value="0" name="NONE" id="98001"/>
+         <fixr:code value="1" name="PKCS" id="98002"/>
+         <fixr:code value="2" name="DES" id="98003"/>
+         <fixr:code value="3" name="PKCSDES" id="98004"/>
+         <fixr:code value="4" name="PGPDES" id="98005"/>
+         <fixr:code value="5" name="PGPDESMD5" id="98006"/>
+         <fixr:code value="6" name="PEM" id="98007"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="CxlRejReasonCodeSet" id="102" type="int">
+         <fixr:code value="0" name="TOO_LATE_TO_CANCEL" id="102001"/>
+         <fixr:code value="1" name="UNKNOWN_ORDER" id="102002"/>
+         <fixr:code value="2" name="BROKER_CREDIT" id="102003"/>
+         <fixr:code value="3" name="ORDER_ALREADY_IN_PENDING_STATUS" id="102004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="OrdRejReasonCodeSet" id="103" type="int">
+         <fixr:code value="0" name="BROKER_CREDIT" id="103001"/>
+         <fixr:code value="1" name="UNKNOWN_SYMBOL" id="103002"/>
+         <fixr:code value="2" name="EXCHANGE_CLOSED" id="103003"/>
+         <fixr:code value="3" name="ORDER_EXCEEDS_LIMIT" id="103004"/>
+         <fixr:code value="4" name="TOO_LATE_TO_ENTER" id="103005"/>
+         <fixr:code value="5" name="UNKNOWN_ORDER" id="103006"/>
+         <fixr:code value="6" name="DUPLICATE_ORDER" id="103007"/>
+         <fixr:code value="7"
+                    name="DUPLICATE_OF_A_VERBALLY_COMMUNICATED_ORDER"
+                    id="103008"/>
+         <fixr:code value="8" name="STALE_ORDER" id="103009"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="IOIQualifierCodeSet" id="104" type="char">
+         <fixr:code value="A" name="ALL_OR_NONE" id="104001"/>
+         <fixr:code value="C" name="AT_THE_CLOSE" id="104002"/>
+         <fixr:code value="I" name="IN_TOUCH_WITH" id="104003"/>
+         <fixr:code value="L" name="LIMIT" id="104004"/>
+         <fixr:code value="M" name="MORE_BEHIND" id="104005"/>
+         <fixr:code value="O" name="AT_THE_OPEN" id="104006"/>
+         <fixr:code value="P" name="TAKING_A_POSITION" id="104007"/>
+         <fixr:code value="Q" name="AT_THE_MARKET" id="104008"/>
+         <fixr:code value="R" name="READY_TO_TRADE" id="104009"/>
+         <fixr:code value="S" name="PORTFOLIO_SHOWN" id="104010"/>
+         <fixr:code value="T" name="THROUGH_THE_DAY" id="104011"/>
+         <fixr:code value="V" name="VERSUS" id="104012"/>
+         <fixr:code value="W" name="INDICATION" id="104013"/>
+         <fixr:code value="X" name="CROSSING_OPPORTUNITY" id="104014"/>
+         <fixr:code value="Y" name="AT_THE_MIDPOINT" id="104015"/>
+         <fixr:code value="Z" name="PRE_OPEN" id="104016"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="ReportToExchCodeSet" id="113" type="Boolean">
+         <fixr:code value="N" name="NO" id="113001"/>
+         <fixr:code value="Y" name="YES" id="113002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="LocateReqdCodeSet" id="114" type="Boolean">
+         <fixr:code value="N" name="NO" id="114001"/>
+         <fixr:code value="Y" name="YES" id="114002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="ForexReqCodeSet" id="121" type="Boolean">
+         <fixr:code value="N" name="NO" id="121001"/>
+         <fixr:code value="Y" name="YES" id="121002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="GapFillFlagCodeSet" id="123" type="Boolean">
+         <fixr:code value="N" name="NO" id="123001"/>
+         <fixr:code value="Y" name="YES" id="123002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="DKReasonCodeSet" id="127" type="char">
+         <fixr:code value="A" name="UNKNOWN_SYMBOL" id="127001"/>
+         <fixr:code value="B" name="WRONG_SIDE" id="127002"/>
+         <fixr:code value="C" name="QUANTITY_EXCEEDS_ORDER" id="127003"/>
+         <fixr:code value="D" name="NO_MATCHING_ORDER" id="127004"/>
+         <fixr:code value="E" name="PRICE_EXCEEDS_LIMIT" id="127005"/>
+         <fixr:code value="Z" name="OTHER" id="127006"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="IOINaturalFlagCodeSet" id="130" type="Boolean">
+         <fixr:code value="N" name="NO" id="130001"/>
+         <fixr:code value="Y" name="YES" id="130002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="MiscFeeTypeCodeSet" id="139" type="char">
+         <fixr:code value="1" name="REGULATORY" id="139001"/>
+         <fixr:code value="2" name="TAX" id="139002"/>
+         <fixr:code value="3" name="LOCAL_COMMISSION" id="139003"/>
+         <fixr:code value="4" name="EXCHANGE_FEES" id="139004"/>
+         <fixr:code value="5" name="STAMP" id="139005"/>
+         <fixr:code value="6" name="LEVY" id="139006"/>
+         <fixr:code value="7" name="OTHER" id="139007"/>
+         <fixr:code value="8" name="MARKUP" id="139008"/>
+         <fixr:code value="9" name="CONSUMPTION_TAX" id="139009"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="ResetSeqNumFlagCodeSet" id="141" type="Boolean">
+         <fixr:code value="N" name="NO" id="141001"/>
+         <fixr:code value="Y" name="YES" id="141002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="ExecTypeCodeSet" id="150" type="char">
+         <fixr:code value="0" name="NEW" id="150001"/>
+         <fixr:code value="1" name="PARTIAL_FILL" id="150002"/>
+         <fixr:code value="2" name="FILL" id="150003"/>
+         <fixr:code value="3" name="DONE_FOR_DAY" id="150004"/>
+         <fixr:code value="4" name="CANCELED" id="150005"/>
+         <fixr:code value="5" name="REPLACED" id="150006"/>
+         <fixr:code value="6" name="PENDING_CANCEL" id="150007"/>
+         <fixr:code value="7" name="STOPPED" id="150008"/>
+         <fixr:code value="8" name="REJECTED" id="150009"/>
+         <fixr:code value="9" name="SUSPENDED" id="150010"/>
+         <fixr:code value="A" name="PENDING_NEW" id="150011"/>
+         <fixr:code value="B" name="CALCULATED" id="150012"/>
+         <fixr:code value="C" name="EXPIRED" id="150013"/>
+         <fixr:code value="D" name="RESTATED" id="150014"/>
+         <fixr:code value="E" name="PENDING_REPLACE" id="150015"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SettlInstModeCodeSet" id="160" type="char">
+         <fixr:code value="0" name="DEFAULT" id="160001"/>
+         <fixr:code value="1" name="STANDING_INSTRUCTIONS_PROVIDED" id="160002"/>
+         <fixr:code value="2" name="SPECIFIC_ALLOCATION_ACCOUNT_OVERRIDING" id="160003"/>
+         <fixr:code value="3" name="SPECIFIC_ALLOCATION_ACCOUNT_STANDING" id="160004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SettlInstTransTypeCodeSet" id="163" type="char">
+         <fixr:code value="C" name="CANCEL" id="163001"/>
+         <fixr:code value="N" name="NEW" id="163002"/>
+         <fixr:code value="R" name="REPLACE" id="163003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SettlInstSourceCodeSet" id="165" type="char">
+         <fixr:code value="1" name="BROKER_CREDIT" id="165001"/>
+         <fixr:code value="2" name="INSTITUTION" id="165002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SettlLocationCodeSet" id="166" type="String">
+         <fixr:code value="CED" name="CEDEL" id="166001"/>
+         <fixr:code value="DTC" name="DEPOSITORY_TRUST_COMPANY" id="166002"/>
+         <fixr:code value="EUR" name="EURO_CLEAR" id="166003"/>
+         <fixr:code value="FED" name="FEDERAL_BOOK_ENTRY" id="166004"/>
+         <fixr:code value="ISO Country Code"
+                    name="LOCAL_MARKET_SETTLE_LOCATION"
+                    id="166005"/>
+         <fixr:code value="PNY" name="PHYSICAL" id="166006"/>
+         <fixr:code value="PTC" name="PARTICIPANT_TRUST_COMPANY" id="166007"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SecurityTypeCodeSet" id="167" type="String">
+         <fixr:code value="?" name="WILDCARD" id="167001"/>
+         <fixr:code value="BA" name="BANKERS_ACCEPTANCE" id="167002"/>
+         <fixr:code value="CB" name="CONVERTIBLE_BOND" id="167003"/>
+         <fixr:code value="CD" name="CERTIFICATE_OF_DEPOSIT" id="167004"/>
+         <fixr:code value="CMO" name="COLLATERALIZED_MORTGAGE_OBLIGATION" id="167005"/>
+         <fixr:code value="CORP" name="CORPORATE_BOND" id="167006"/>
+         <fixr:code value="CP" name="COMMERCIAL_PAPER" id="167007"/>
+         <fixr:code value="CPP" name="CORPORATE_PRIVATE_PLACEMENT" id="167008"/>
+         <fixr:code value="CS" name="COMMON_STOCK" id="167009"/>
+         <fixr:code value="FHA" name="FEDERAL_HOUSING_AUTHORITY" id="167010"/>
+         <fixr:code value="FHL" name="FEDERAL_HOME_LOAN" id="167011"/>
+         <fixr:code value="FN" name="FEDERAL_NATIONAL_MORTGAGE_ASSOCIATION" id="167012"/>
+         <fixr:code value="FOR" name="FOREIGN_EXCHANGE_CONTRACT" id="167013"/>
+         <fixr:code value="FUT" name="FUTURE" id="167014"/>
+         <fixr:code value="GN"
+                    name="GOVERNMENT_NATIONAL_MORTGAGE_ASSOCIATION"
+                    id="167015"/>
+         <fixr:code value="GOVT" name="TREASURIES_AGENCY_DEBENTURE" id="167016"/>
+         <fixr:code value="IET" name="IOETTE_MORTGAGE" id="167017"/>
+         <fixr:code value="MF" name="MUTUAL_FUND" id="167018"/>
+         <fixr:code value="MIO" name="MORTGAGE_INTEREST_ONLY" id="167019"/>
+         <fixr:code value="MPO" name="MORTGAGE_PRINCIPAL_ONLY" id="167020"/>
+         <fixr:code value="MPP" name="MORTGAGE_PRIVATE_PLACEMENT" id="167021"/>
+         <fixr:code value="MPT" name="MISCELLANEOUS_PASS_THROUGH" id="167022"/>
+         <fixr:code value="MUNI" name="MUNICIPAL_BOND" id="167023"/>
+         <fixr:code value="NONE" name="NO_SECURITY_TYPE" id="167024"/>
+         <fixr:code value="OPT" name="OPTION" id="167025"/>
+         <fixr:code value="PS" name="PREFERRED_STOCK" id="167026"/>
+         <fixr:code value="RP" name="REPURCHASE_AGREEMENT" id="167027"/>
+         <fixr:code value="RVRP" name="REVERSE_REPURCHASE_AGREEMENT" id="167028"/>
+         <fixr:code value="SL" name="STUDENT_LOAN_MARKETING_ASSOCIATION" id="167029"/>
+         <fixr:code value="TD" name="TIME_DEPOSIT" id="167030"/>
+         <fixr:code value="USTB" name="US_TREASURY_BILL_OLD" id="167031"/>
+         <fixr:code value="WAR" name="WARRANT" id="167032"/>
+         <fixr:code value="ZOO" name="CATS_TIGERS_AND_LIONS" id="167033"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="StandInstDbTypeCodeSet" id="169" type="int">
+         <fixr:code value="0" name="OTHER" id="169001"/>
+         <fixr:code value="1" name="DTCSID" id="169002"/>
+         <fixr:code value="2" name="THOMSON_ALERT" id="169003"/>
+         <fixr:code value="3" name="A_GLOBAL_CUSTODIAN" id="169004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="AllocLinkTypeCodeSet" id="197" type="int">
+         <fixr:code value="0" name="FX_NETTING" id="197001"/>
+         <fixr:code value="1" name="FX_SWAP" id="197002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="PutOrCallCodeSet" id="201" type="int">
+         <fixr:code value="0" name="PUT" id="201001"/>
+         <fixr:code value="1" name="CALL" id="201002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="CoveredOrUncoveredCodeSet" id="203" type="int">
+         <fixr:code value="0" name="COVERED" id="203001"/>
+         <fixr:code value="1" name="UNCOVERED" id="203002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="CustomerOrFirmCodeSet" id="204" type="int">
+         <fixr:code value="0" name="CUSTOMER" id="204001"/>
+         <fixr:code value="1" name="FIRM" id="204002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="NotifyBrokerOfCreditCodeSet" id="208" type="Boolean">
+         <fixr:code value="N" name="NO" id="208001"/>
+         <fixr:code value="Y" name="YES" id="208002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="AllocHandlInstCodeSet" id="209" type="int">
+         <fixr:code value="1" name="MATCH" id="209001"/>
+         <fixr:code value="2" name="FORWARD" id="209002"/>
+         <fixr:code value="3" name="FORWARD_AND_MATCH" id="209003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="RoutingTypeCodeSet" id="216" type="int">
+         <fixr:code value="1" name="TARGET_FIRM" id="216001"/>
+         <fixr:code value="2" name="TARGET_LIST" id="216002"/>
+         <fixr:code value="3" name="BLOCK_FIRM" id="216003"/>
+         <fixr:code value="4" name="BLOCK_LIST" id="216004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="BenchmarkCodeSet" id="219" type="char">
+         <fixr:code value="1" name="CURVE" id="219001"/>
+         <fixr:code value="2" name="FIVE_YR" id="219002"/>
+         <fixr:code value="3" name="OLD5" id="219003"/>
+         <fixr:code value="4" name="TEN_YR" id="219004"/>
+         <fixr:code value="5" name="OLD10" id="219005"/>
+         <fixr:code value="6" name="THIRTY_YR" id="219006"/>
+         <fixr:code value="7" name="OLD30" id="219007"/>
+         <fixr:code value="8" name="THREE_MOLIBOR" id="219008"/>
+         <fixr:code value="9" name="SIX_MOLIBOR" id="219009"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SubscriptionRequestTypeCodeSet" id="263" type="char">
+         <fixr:code value="0" name="SNAPSHOT" id="263001"/>
+         <fixr:code value="1" name="SNAPSHOT_AND_UPDATES" id="263002"/>
+         <fixr:code value="2" name="DISABLE_PREVIOUS_SNAPSHOT" id="263003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="MDUpdateTypeCodeSet" id="265" type="int">
+         <fixr:code value="0" name="FULL_REFRESH" id="265001"/>
+         <fixr:code value="1" name="INCREMENTAL_REFRESH" id="265002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="AggregatedBookCodeSet" id="266" type="Boolean">
+         <fixr:code value="N" name="NO" id="266001"/>
+         <fixr:code value="Y" name="YES" id="266002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="MDEntryTypeCodeSet" id="269" type="char">
+         <fixr:code value="0" name="BID" id="269001"/>
+         <fixr:code value="1" name="OFFER" id="269002"/>
+         <fixr:code value="2" name="TRADE" id="269003"/>
+         <fixr:code value="3" name="INDEX_VALUE" id="269004"/>
+         <fixr:code value="4" name="OPENING_PRICE" id="269005"/>
+         <fixr:code value="5" name="CLOSING_PRICE" id="269006"/>
+         <fixr:code value="6" name="SETTLEMENT_PRICE" id="269007"/>
+         <fixr:code value="7" name="TRADING_SESSION_HIGH_PRICE" id="269008"/>
+         <fixr:code value="8" name="TRADING_SESSION_LOW_PRICE" id="269009"/>
+         <fixr:code value="9" name="TRADING_SESSION_VWAP_PRICE" id="269010"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="TickDirectionCodeSet" id="274" type="char">
+         <fixr:code value="0" name="PLUS_TICK" id="274001"/>
+         <fixr:code value="1" name="ZERO_PLUS_TICK" id="274002"/>
+         <fixr:code value="2" name="MINUS_TICK" id="274003"/>
+         <fixr:code value="3" name="ZERO_MINUS_TICK" id="274004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="QuoteConditionCodeSet" id="276" type="MultipleValueString">
+         <fixr:code value="A" name="OPEN" id="276001"/>
+         <fixr:code value="B" name="CLOSED" id="276002"/>
+         <fixr:code value="C" name="EXCHANGE_BEST" id="276003"/>
+         <fixr:code value="D" name="CONSOLIDATED_BEST" id="276004"/>
+         <fixr:code value="E" name="LOCKED" id="276005"/>
+         <fixr:code value="F" name="CROSSED" id="276006"/>
+         <fixr:code value="G" name="DEPTH" id="276007"/>
+         <fixr:code value="H" name="FAST_TRADING" id="276008"/>
+         <fixr:code value="I" name="NON_FIRM" id="276009"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="TradeConditionCodeSet" id="277" type="MultipleValueString">
+         <fixr:code value="A" name="CASH" id="277001"/>
+         <fixr:code value="B" name="AVERAGE_PRICE_TRADE" id="277002"/>
+         <fixr:code value="C" name="CASH_TRADE" id="277003"/>
+         <fixr:code value="D" name="NEXT_DAY" id="277004"/>
+         <fixr:code value="E" name="OPENING" id="277005"/>
+         <fixr:code value="F" name="INTRADAY_TRADE_DETAIL" id="277006"/>
+         <fixr:code value="G" name="RULE127_TRADE" id="277007"/>
+         <fixr:code value="H" name="RULE155_TRADE" id="277008"/>
+         <fixr:code value="I" name="SOLD_LAST" id="277009"/>
+         <fixr:code value="J" name="NEXT_DAY_TRADE" id="277010"/>
+         <fixr:code value="K" name="OPENED" id="277011"/>
+         <fixr:code value="L" name="SELLER" id="277012"/>
+         <fixr:code value="M" name="SOLD" id="277013"/>
+         <fixr:code value="N" name="STOPPED_STOCK" id="277014"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="MDUpdateActionCodeSet" id="279" type="char">
+         <fixr:code value="0" name="NEW" id="279001"/>
+         <fixr:code value="1" name="CHANGE" id="279002"/>
+         <fixr:code value="2" name="DELETE" id="279003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="MDReqRejReasonCodeSet" id="281" type="char">
+         <fixr:code value="0" name="UNKNOWN_SYMBOL" id="281001"/>
+         <fixr:code value="1" name="DUPLICATE_MD_REQ_ID" id="281002"/>
+         <fixr:code value="2" name="INSUFFICIENT_BANDWIDTH" id="281003"/>
+         <fixr:code value="3" name="INSUFFICIENT_PERMISSIONS" id="281004"/>
+         <fixr:code value="4" name="UNSUPPORTED_SUBSCRIPTION_REQUEST_TYPE" id="281005"/>
+         <fixr:code value="5" name="UNSUPPORTED_MARKET_DEPTH" id="281006"/>
+         <fixr:code value="6" name="UNSUPPORTED_MD_UPDATE_TYPE" id="281007"/>
+         <fixr:code value="7" name="UNSUPPORTED_AGGREGATED_BOOK" id="281008"/>
+         <fixr:code value="8" name="UNSUPPORTED_MD_ENTRY_TYPE" id="281009"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="DeleteReasonCodeSet" id="285" type="char">
+         <fixr:code value="0" name="CANCELLATION" id="285001"/>
+         <fixr:code value="1" name="ERROR" id="285002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="OpenCloseSettleFlagCodeSet" id="286" type="char">
+         <fixr:code value="0" name="DAILY_OPEN" id="286001"/>
+         <fixr:code value="1" name="SESSION_OPEN" id="286002"/>
+         <fixr:code value="2" name="DELIVERY_SETTLEMENT_ENTRY" id="286003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="FinancialStatusCodeSet" id="291" type="char">
+         <fixr:code value="1" name="BANKRUPT" id="291001"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="CorporateActionCodeSet" id="292" type="char">
+         <fixr:code value="A" name="EX_DIVIDEND" id="292001"/>
+         <fixr:code value="B" name="EX_DISTRIBUTION" id="292002"/>
+         <fixr:code value="C" name="EX_RIGHTS" id="292003"/>
+         <fixr:code value="D" name="NEW" id="292004"/>
+         <fixr:code value="E" name="EX_INTEREST" id="292005"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="QuoteStatusCodeSet" id="297" type="int">
+         <fixr:code value="0" name="ACCEPTED" id="297001"/>
+         <fixr:code value="1" name="CANCEL_FOR_SYMBOL" id="297002"/>
+         <fixr:code value="2" name="CANCELED_FOR_SECURITY_TYPE" id="297003"/>
+         <fixr:code value="3" name="CANCELED_FOR_UNDERLYING" id="297004"/>
+         <fixr:code value="4" name="CANCELED_ALL" id="297005"/>
+         <fixr:code value="5" name="REJECTED" id="297006"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="QuoteCancelTypeCodeSet" id="298" type="int">
+         <fixr:code value="1" name="CANCEL_FOR_ONE_OR_MORE_SECURITIES" id="298001"/>
+         <fixr:code value="2" name="CANCEL_FOR_SECURITY_TYPE" id="298002"/>
+         <fixr:code value="3" name="CANCEL_FOR_UNDERLYING_SECURITY" id="298003"/>
+         <fixr:code value="4" name="CANCEL_ALL_QUOTES" id="298004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="QuoteRejectReasonCodeSet" id="300" type="int">
+         <fixr:code value="1" name="UNKNOWN_SYMBOL" id="300001"/>
+         <fixr:code value="2" name="EXCHANGE" id="300002"/>
+         <fixr:code value="3" name="QUOTE_REQUEST_EXCEEDS_LIMIT" id="300003"/>
+         <fixr:code value="4" name="TOO_LATE_TO_ENTER" id="300004"/>
+         <fixr:code value="5" name="UNKNOWN_QUOTE" id="300005"/>
+         <fixr:code value="6" name="DUPLICATE_QUOTE" id="300006"/>
+         <fixr:code value="7" name="INVALID_BID" id="300007"/>
+         <fixr:code value="8" name="INVALID_PRICE" id="300008"/>
+         <fixr:code value="9" name="NOT_AUTHORIZED_TO_QUOTE_SECURITY" id="300009"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="QuoteResponseLevelCodeSet" id="301" type="int">
+         <fixr:code value="0" name="NO_ACKNOWLEDGEMENT" id="301001"/>
+         <fixr:code value="1"
+                    name="ACKNOWLEDGE_ONLY_NEGATIVE_OR_ERRONEOUS_QUOTES"
+                    id="301002"/>
+         <fixr:code value="2" name="ACKNOWLEDGE_EACH_QUOTE_MESSAGE" id="301003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="QuoteRequestTypeCodeSet" id="303" type="int">
+         <fixr:code value="1" name="MANUAL" id="303001"/>
+         <fixr:code value="2" name="AUTOMATIC" id="303002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SecurityRequestTypeCodeSet" id="321" type="int">
+         <fixr:code value="0"
+                    name="REQUEST_SECURITY_IDENTITY_AND_SPECIFICATIONS"
+                    id="321001"/>
+         <fixr:code value="1"
+                    name="REQUEST_SECURITY_IDENTITY_FOR_SPECIFICATIONS"
+                    id="321002"/>
+         <fixr:code value="2" name="REQUEST_LIST_SECURITY_TYPES" id="321003"/>
+         <fixr:code value="3" name="REQUEST_LIST_SECURITIES" id="321004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SecurityResponseTypeCodeSet" id="323" type="int">
+         <fixr:code value="1" name="ACCEPT_AS_IS" id="323001"/>
+         <fixr:code value="2" name="ACCEPT_WITH_REVISIONS" id="323002"/>
+         <fixr:code value="3"
+                    name="LIST_OF_SECURITY_TYPES_RETURNED_PER_REQUEST"
+                    id="323003"/>
+         <fixr:code value="4"
+                    name="LIST_OF_SECURITIES_RETURNED_PER_REQUEST"
+                    id="323004"/>
+         <fixr:code value="5" name="REJECT_SECURITY_PROPOSAL" id="323005"/>
+         <fixr:code value="6" name="CANNOT_MATCH_SELECTION_CRITERIA" id="323006"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="UnsolicitedIndicatorCodeSet" id="325" type="Boolean">
+         <fixr:code value="N" name="NO" id="325001"/>
+         <fixr:code value="Y" name="YES" id="325002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SecurityTradingStatusCodeSet" id="326" type="int">
+         <fixr:code value="1" name="OPENING_DELAY" id="326001"/>
+         <fixr:code value="10" name="MARKET_ON_CLOSE_IMBALANCE_SELL" id="326002"/>
+         <fixr:code value="12" name="NO_MARKET_IMBALANCE" id="326003"/>
+         <fixr:code value="13" name="NO_MARKET_ON_CLOSE_IMBALANCE" id="326004"/>
+         <fixr:code value="14" name="ITS_PRE_OPENING" id="326005"/>
+         <fixr:code value="15" name="NEW_PRICE_INDICATION" id="326006"/>
+         <fixr:code value="16" name="TRADE_DISSEMINATION_TIME" id="326007"/>
+         <fixr:code value="17" name="READY_TO_TRADE" id="326008"/>
+         <fixr:code value="18" name="NOT_AVAILABLE_FOR_TRADING" id="326009"/>
+         <fixr:code value="19" name="NOT_TRADED_ON_THIS_MARKET" id="326010"/>
+         <fixr:code value="2" name="TRADING_HALT" id="326011"/>
+         <fixr:code value="20" name="UNKNOWN_OR_INVALID" id="326012"/>
+         <fixr:code value="3" name="RESUME" id="326013"/>
+         <fixr:code value="4" name="NO_OPEN" id="326014"/>
+         <fixr:code value="5" name="PRICE_INDICATION" id="326015"/>
+         <fixr:code value="6" name="TRADING_RANGE_INDICATION" id="326016"/>
+         <fixr:code value="7" name="MARKET_IMBALANCE_BUY" id="326017"/>
+         <fixr:code value="8" name="MARKET_IMBALANCE_SELL" id="326018"/>
+         <fixr:code value="9" name="MARKET_ON_CLOSE_IMBALANCE_BUY" id="326019"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="HaltReasonCharCodeSet" id="327" type="char">
+         <fixr:code value="D" name="NEWS_DISSEMINATION" id="327001"/>
+         <fixr:code value="E" name="ORDER_INFLUX" id="327002"/>
+         <fixr:code value="I" name="ORDER_IMBALANCE" id="327003"/>
+         <fixr:code value="M" name="ADDITIONAL_INFORMATION" id="327004"/>
+         <fixr:code value="P" name="NEWS_PENDING" id="327005"/>
+         <fixr:code value="X" name="EQUIPMENT_CHANGEOVER" id="327006"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="InViewOfCommonCodeSet" id="328" type="Boolean">
+         <fixr:code value="N" name="NO" id="328001"/>
+         <fixr:code value="Y" name="YES" id="328002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="DueToRelatedCodeSet" id="329" type="Boolean">
+         <fixr:code value="N" name="NO" id="329001"/>
+         <fixr:code value="Y" name="YES" id="329002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="AdjustmentCodeSet" id="334" type="int">
+         <fixr:code value="1" name="CANCEL" id="334001"/>
+         <fixr:code value="2" name="ERROR" id="334002"/>
+         <fixr:code value="3" name="CORRECTION" id="334003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="TradSesMethodCodeSet" id="338" type="int">
+         <fixr:code value="1" name="ELECTRONIC" id="338001"/>
+         <fixr:code value="2" name="OPEN_OUTCRY" id="338002"/>
+         <fixr:code value="3" name="TWO_PARTY" id="338003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="TradSesModeCodeSet" id="339" type="int">
+         <fixr:code value="1" name="TESTING" id="339001"/>
+         <fixr:code value="2" name="SIMULATED" id="339002"/>
+         <fixr:code value="3" name="PRODUCTION" id="339003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="TradSesStatusCodeSet" id="340" type="int">
+         <fixr:code value="1" name="HALTED" id="340001"/>
+         <fixr:code value="2" name="OPEN" id="340002"/>
+         <fixr:code value="3" name="CLOSED" id="340003"/>
+         <fixr:code value="4" name="PRE_OPEN" id="340004"/>
+         <fixr:code value="5" name="PRE_CLOSE" id="340005"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="MessageEncodingCodeSet" id="347" type="String">
+         <fixr:code value="EUC-JP" name="EUCJP" id="347001"/>
+         <fixr:code value="ISO-2022-JP" name="ISO2022_JP" id="347002"/>
+         <fixr:code value="Shift_JIS" name="SHIFT_JIS" id="347003"/>
+         <fixr:code value="UTF-8" name="UTF8" id="347004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="QuoteEntryRejectReasonCodeSet" id="368" type="int">
+         <fixr:code value="1" name="UNKNOWN_SYMBOL" id="368001"/>
+         <fixr:code value="2" name="EXCHANGE" id="368002"/>
+         <fixr:code value="3" name="QUOTE_EXCEEDS_LIMIT" id="368003"/>
+         <fixr:code value="4" name="TOO_LATE_TO_ENTER" id="368004"/>
+         <fixr:code value="5" name="UNKNOWN_QUOTE" id="368005"/>
+         <fixr:code value="6" name="DUPLICATE_QUOTE" id="368006"/>
+         <fixr:code value="7" name="INVALID_BID_ASK_SPREAD" id="368007"/>
+         <fixr:code value="8" name="INVALID_PRICE" id="368008"/>
+         <fixr:code value="9" name="NOT_AUTHORIZED_TO_QUOTE_SECURITY" id="368009"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SessionRejectReasonCodeSet" id="373" type="int">
+         <fixr:code value="0" name="INVALID_TAG_NUMBER" id="373001"/>
+         <fixr:code value="1" name="REQUIRED_TAG_MISSING" id="373002"/>
+         <fixr:code value="10" name="SENDING_TIME_ACCURACY_PROBLEM" id="373003"/>
+         <fixr:code value="11" name="INVALID_MSG_TYPE" id="373004"/>
+         <fixr:code value="2" name="TAG_NOT_DEFINED_FOR_THIS_MESSAGE_TYPE" id="373005"/>
+         <fixr:code value="3" name="UNDEFINED_TAG" id="373006"/>
+         <fixr:code value="4" name="TAG_SPECIFIED_WITHOUT_A_VALUE" id="373007"/>
+         <fixr:code value="5" name="VALUE_IS_INCORRECT" id="373008"/>
+         <fixr:code value="6" name="INCORRECT_DATA_FORMAT_FOR_VALUE" id="373009"/>
+         <fixr:code value="7" name="DECRYPTION_PROBLEM" id="373010"/>
+         <fixr:code value="8" name="SIGNATURE_PROBLEM" id="373011"/>
+         <fixr:code value="9" name="COMP_ID_PROBLEM" id="373012"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="BidRequestTransTypeCodeSet" id="374" type="char">
+         <fixr:code value="C" name="CANCEL" id="374001"/>
+         <fixr:code value="N" name="NEW" id="374002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="SolicitedFlagCodeSet" id="377" type="Boolean">
+         <fixr:code value="N" name="NO" id="377001"/>
+         <fixr:code value="Y" name="YES" id="377002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="ExecRestatementReasonCodeSet" id="378" type="int">
+         <fixr:code value="0" name="GT_CORPORATE_ACTION" id="378001"/>
+         <fixr:code value="1" name="GT_RENEWAL" id="378002"/>
+         <fixr:code value="2" name="VERBAL_CHANGE" id="378003"/>
+         <fixr:code value="3" name="REPRICING_OF_ORDER" id="378004"/>
+         <fixr:code value="4" name="BROKER_OPTION" id="378005"/>
+         <fixr:code value="5" name="PARTIAL_DECLINE_OF_ORDER_QTY" id="378006"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="BusinessRejectReasonCodeSet" id="380" type="int">
+         <fixr:code value="0" name="OTHER" id="380001"/>
+         <fixr:code value="1" name="UNKNOWN_ID" id="380002"/>
+         <fixr:code value="2" name="UNKNOWN_SECURITY" id="380003"/>
+         <fixr:code value="3" name="UNSUPPORTED_MESSAGE_TYPE" id="380004"/>
+         <fixr:code value="4" name="APPLICATION_NOT_AVAILABLE" id="380005"/>
+         <fixr:code value="5" name="CONDITIONALLY_REQUIRED_FIELD_MISSING" id="380006"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="MsgDirectionCodeSet" id="385" type="char">
+         <fixr:code value="R" name="RECEIVE" id="385001"/>
+         <fixr:code value="S" name="SEND" id="385002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="DiscretionInstCodeSet" id="388" type="char">
+         <fixr:code value="0" name="RELATED_TO_DISPLAYED_PRICE" id="388001"/>
+         <fixr:code value="1" name="RELATED_TO_MARKET_PRICE" id="388002"/>
+         <fixr:code value="2" name="RELATED_TO_PRIMARY_PRICE" id="388003"/>
+         <fixr:code value="3" name="RELATED_TO_LOCAL_PRIMARY_PRICE" id="388004"/>
+         <fixr:code value="4" name="RELATED_TO_MIDPOINT_PRICE" id="388005"/>
+         <fixr:code value="5" name="RELATED_TO_LAST_TRADE_PRICE" id="388006"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="LiquidityIndTypeCodeSet" id="409" type="int">
+         <fixr:code value="1" name="FIVE_DAY_MOVING_AVERAGE" id="409001"/>
+         <fixr:code value="2" name="TWENTY_DAY_MOVING_AVERAGE" id="409002"/>
+         <fixr:code value="3" name="NORMAL_MARKET_SIZE" id="409003"/>
+         <fixr:code value="4" name="OTHER" id="409004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="ExchangeForPhysicalCodeSet" id="411" type="Boolean">
+         <fixr:code value="N" name="NO" id="411001"/>
+         <fixr:code value="Y" name="YES" id="411002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="ProgRptReqsCodeSet" id="414" type="int">
+         <fixr:code value="1" name="BUY_SIDE_REQUESTS" id="414001"/>
+         <fixr:code value="2" name="SELL_SIDE_SENDS" id="414002"/>
+         <fixr:code value="3" name="REAL_TIME_EXECUTION_REPORTS" id="414003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="IncTaxIndCodeSet" id="416" type="int">
+         <fixr:code value="1" name="NET" id="416001"/>
+         <fixr:code value="2" name="GROSS" id="416002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="TradeTypeCodeSet" id="418" type="char">
+         <fixr:code value="A" name="AGENCY" id="418001"/>
+         <fixr:code value="G" name="VWAP_GUARANTEE" id="418002"/>
+         <fixr:code value="J" name="GUARANTEED_CLOSE" id="418003"/>
+         <fixr:code value="R" name="RISK_TRADE" id="418004"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="BasisPxTypeCodeSet" id="419" type="char">
+         <fixr:code value="2" name="CLOSING_PRICE_AT_MORNING_SESSION" id="419001"/>
+         <fixr:code value="3" name="CLOSING_PRICE" id="419002"/>
+         <fixr:code value="4" name="CURRENT_PRICE" id="419003"/>
+         <fixr:code value="5" name="SQ" id="419004"/>
+         <fixr:code value="6" name="VWAP_THROUGH_A_DAY" id="419005"/>
+         <fixr:code value="7" name="VWAP_THROUGH_A_MORNING_SESSION" id="419006"/>
+         <fixr:code value="8" name="VWAP_THROUGH_AN_AFTERNOON_SESSION" id="419007"/>
+         <fixr:code value="9" name="VWAP_THROUGH_A_DAY_EXCEPT" id="419008"/>
+         <fixr:code value="A" name="VWAP_THROUGH_A_MORNING_SESSION_EXCEPT" id="419009"/>
+         <fixr:code value="B"
+                    name="VWAP_THROUGH_AN_AFTERNOON_SESSION_EXCEPT"
+                    id="419010"/>
+         <fixr:code value="C" name="STRIKE" id="419011"/>
+         <fixr:code value="D" name="OPEN" id="419012"/>
+         <fixr:code value="Z" name="OTHERS" id="419013"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="PriceTypeCodeSet" id="423" type="int">
+         <fixr:code value="1" name="PERCENTAGE" id="423001"/>
+         <fixr:code value="2" name="PER_UNIT" id="423002"/>
+         <fixr:code value="3" name="FIXED_AMOUNT" id="423003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="GTBookingInstCodeSet" id="427" type="int">
+         <fixr:code value="0"
+                    name="BOOK_OUT_ALL_TRADES_ON_DAY_OF_EXECUTION"
+                    id="427001"/>
+         <fixr:code value="1" name="ACCUMULATE_UNTIL_FILLED_OR_EXPIRED" id="427002"/>
+         <fixr:code value="2"
+                    name="ACCUMULATE_UNTIL_VERBALLLY_NOTIFIED_OTHERWISE"
+                    id="427003"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="NetGrossIndCodeSet" id="430" type="int">
+         <fixr:code value="1" name="NET" id="430001"/>
+         <fixr:code value="2" name="GROSS" id="430002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="ListExecInstTypeCodeSet" id="433" type="char">
+         <fixr:code value="1" name="IMMEDIATE" id="433001"/>
+         <fixr:code value="2" name="WAIT_FOR_INSTRUCTION" id="433002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="CxlRejResponseToCodeSet" id="434" type="char">
+         <fixr:code value="1" name="ORDER_CANCEL_REQUEST" id="434001"/>
+         <fixr:code value="2" name="ORDER_CANCEL" id="434002"/>
+      </fixr:codeSet>
+      <fixr:codeSet name="MultiLegReportingTypeCodeSet" id="442" type="char">
+         <fixr:code value="1" name="SINGLE_SECURITY" id="442001"/>
+         <fixr:code value="2" name="INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY" id="442002"/>
+         <fixr:code value="3" name="MULTI_LEG_SECURITY" id="442003"/>
+      </fixr:codeSet>
+   </fixr:codeSets>
+   <fixr:fields>
+      <fixr:field id="1" name="Account" type="String"/>
+      <fixr:field id="2" name="AdvId" type="String"/>
+      <fixr:field id="3" name="AdvRefID" type="String"/>
+      <fixr:field id="4" name="AdvSide" type="AdvSideCodeSet"/>
+      <fixr:field id="5" name="AdvTransType" type="AdvTransTypeCodeSet"/>
+      <fixr:field id="6" name="AvgPx" type="Price"/>
+      <fixr:field id="7" name="BeginSeqNo" type="int"/>
+      <fixr:field id="8" name="BeginString" type="String"/>
+      <fixr:field id="9" name="BodyLength" type="int"/>
+      <fixr:field id="10" name="CheckSum" type="String"/>
+      <fixr:field id="11" name="ClOrdID" type="String"/>
+      <fixr:field id="12" name="Commission" type="Amt"/>
+      <fixr:field id="13" name="CommType" type="CommTypeCodeSet"/>
+      <fixr:field id="14" name="CumQty" type="Qty"/>
+      <fixr:field id="15" name="Currency" type="Currency"/>
+      <fixr:field id="16" name="EndSeqNo" type="int"/>
+      <fixr:field id="17" name="ExecID" type="String"/>
+      <fixr:field id="18" name="ExecInst" type="ExecInstCodeSet"/>
+      <fixr:field id="19" name="ExecRefID" type="String"/>
+      <fixr:field id="20" name="ExecTransType" type="ExecTransTypeCodeSet"/>
+      <fixr:field id="21" name="HandlInst" type="HandlInstCodeSet"/>
+      <fixr:field id="22" name="IDSource" type="IDSourceCodeSet"/>
+      <fixr:field id="23" name="IOIid" type="String"/>
+      <fixr:field id="24" name="IOIOthSvc" type="char"/>
+      <fixr:field id="25" name="IOIQltyInd" type="IOIQltyIndCodeSet"/>
+      <fixr:field id="26" name="IOIRefID" type="String"/>
+      <fixr:field id="27" name="IOIShares" type="IOISharesCodeSet"/>
+      <fixr:field id="28" name="IOITransType" type="IOITransTypeCodeSet"/>
+      <fixr:field id="29" name="LastCapacity" type="LastCapacityCodeSet"/>
+      <fixr:field id="30" name="LastMkt" type="Exchange"/>
+      <fixr:field id="31" name="LastPx" type="Price"/>
+      <fixr:field id="32" name="LastShares" type="Qty"/>
+      <fixr:field id="33" name="LinesOfText" type="int"/>
+      <fixr:field id="34" name="MsgSeqNum" type="int"/>
+      <fixr:field id="35" name="MsgType" type="MsgTypeCodeSet"/>
+      <fixr:field id="36" name="NewSeqNo" type="int"/>
+      <fixr:field id="37" name="OrderID" type="String"/>
+      <fixr:field id="38" name="OrderQty" type="Qty"/>
+      <fixr:field id="39" name="OrdStatus" type="OrdStatusCodeSet"/>
+      <fixr:field id="40" name="OrdType" type="OrdTypeCodeSet"/>
+      <fixr:field id="41" name="OrigClOrdID" type="String"/>
+      <fixr:field id="42" name="OrigTime" type="UTCTimestamp"/>
+      <fixr:field id="43" name="PossDupFlag" type="PossDupFlagCodeSet"/>
+      <fixr:field id="44" name="Price" type="Price"/>
+      <fixr:field id="45" name="RefSeqNum" type="int"/>
+      <fixr:field id="46" name="RelatdSym" type="String"/>
+      <fixr:field id="47" name="Rule80A" type="Rule80ACodeSet"/>
+      <fixr:field id="48" name="SecurityID" type="String"/>
+      <fixr:field id="49" name="SenderCompID" type="String"/>
+      <fixr:field id="50" name="SenderSubID" type="String"/>
+      <fixr:field id="51" name="SendingDate" type="LocalMktDate"/>
+      <fixr:field id="52" name="SendingTime" type="UTCTimestamp"/>
+      <fixr:field id="53" name="Shares" type="Qty"/>
+      <fixr:field id="54" name="Side" type="SideCodeSet"/>
+      <fixr:field id="55" name="Symbol" type="String"/>
+      <fixr:field id="56" name="TargetCompID" type="String"/>
+      <fixr:field id="57" name="TargetSubID" type="String"/>
+      <fixr:field id="58" name="Text" type="String"/>
+      <fixr:field id="59" name="TimeInForce" type="TimeInForceCodeSet"/>
+      <fixr:field id="60" name="TransactTime" type="UTCTimestamp"/>
+      <fixr:field id="61" name="Urgency" type="UrgencyCodeSet"/>
+      <fixr:field id="62" name="ValidUntilTime" type="UTCTimestamp"/>
+      <fixr:field id="63" name="SettlmntTyp" type="SettlmntTypCodeSet"/>
+      <fixr:field id="64" name="FutSettDate" type="LocalMktDate"/>
+      <fixr:field id="65" name="SymbolSfx" type="String"/>
+      <fixr:field id="66" name="ListID" type="String"/>
+      <fixr:field id="67" name="ListSeqNo" type="int"/>
+      <fixr:field id="68" name="TotNoOrders" type="int"/>
+      <fixr:field id="69" name="ListExecInst" type="String"/>
+      <fixr:field id="70" name="AllocID" type="String"/>
+      <fixr:field id="71" name="AllocTransType" type="AllocTransTypeCodeSet"/>
+      <fixr:field id="72" name="RefAllocID" type="String"/>
+      <fixr:field id="73" name="NoOrders" type="int"/>
+      <fixr:field id="74" name="AvgPrxPrecision" type="int"/>
+      <fixr:field id="75" name="TradeDate" type="LocalMktDate"/>
+      <fixr:field id="76" name="ExecBroker" type="String"/>
+      <fixr:field id="77" name="OpenClose" type="OpenCloseCodeSet"/>
+      <fixr:field id="78" name="NoAllocs" type="int"/>
+      <fixr:field id="79" name="AllocAccount" type="String"/>
+      <fixr:field id="80" name="AllocShares" type="Qty"/>
+      <fixr:field id="81" name="ProcessCode" type="ProcessCodeCodeSet"/>
+      <fixr:field id="82" name="NoRpts" type="int"/>
+      <fixr:field id="83" name="RptSeq" type="int"/>
+      <fixr:field id="84" name="CxlQty" type="Qty"/>
+      <fixr:field id="85" name="NoDlvyInst" type="int"/>
+      <fixr:field id="86" name="DlvyInst" type="String"/>
+      <fixr:field id="87" name="AllocStatus" type="AllocStatusCodeSet"/>
+      <fixr:field id="88" name="AllocRejCode" type="AllocRejCodeCodeSet"/>
+      <fixr:field id="89" name="Signature" type="data"/>
+      <fixr:field id="90" name="SecureDataLen" type="Length"/>
+      <fixr:field id="91" name="SecureData" type="data"/>
+      <fixr:field id="92" name="BrokerOfCredit" type="String"/>
+      <fixr:field id="93" name="SignatureLength" type="Length"/>
+      <fixr:field id="94" name="EmailType" type="EmailTypeCodeSet"/>
+      <fixr:field id="95" name="RawDataLength" type="Length"/>
+      <fixr:field id="96" name="RawData" type="data"/>
+      <fixr:field id="97" name="PossResend" type="PossResendCodeSet"/>
+      <fixr:field id="98" name="EncryptMethod" type="EncryptMethodCodeSet"/>
+      <fixr:field id="99" name="StopPx" type="Price"/>
+      <fixr:field id="100" name="ExDestination" type="Exchange"/>
+      <fixr:field id="102" name="CxlRejReason" type="CxlRejReasonCodeSet"/>
+      <fixr:field id="103" name="OrdRejReason" type="OrdRejReasonCodeSet"/>
+      <fixr:field id="104" name="IOIQualifier" type="IOIQualifierCodeSet"/>
+      <fixr:field id="105" name="WaveNo" type="String"/>
+      <fixr:field id="106" name="Issuer" type="String"/>
+      <fixr:field id="107" name="SecurityDesc" type="String"/>
+      <fixr:field id="108" name="HeartBtInt" type="int"/>
+      <fixr:field id="109" name="ClientID" type="String"/>
+      <fixr:field id="110" name="MinQty" type="Qty"/>
+      <fixr:field id="111" name="MaxFloor" type="Qty"/>
+      <fixr:field id="112" name="TestReqID" type="String"/>
+      <fixr:field id="113" name="ReportToExch" type="ReportToExchCodeSet"/>
+      <fixr:field id="114" name="LocateReqd" type="LocateReqdCodeSet"/>
+      <fixr:field id="115" name="OnBehalfOfCompID" type="String"/>
+      <fixr:field id="116" name="OnBehalfOfSubID" type="String"/>
+      <fixr:field id="117" name="QuoteID" type="String"/>
+      <fixr:field id="118" name="NetMoney" type="Amt"/>
+      <fixr:field id="119" name="SettlCurrAmt" type="Amt"/>
+      <fixr:field id="120" name="SettlCurrency" type="Currency"/>
+      <fixr:field id="121" name="ForexReq" type="ForexReqCodeSet"/>
+      <fixr:field id="122" name="OrigSendingTime" type="UTCTimestamp"/>
+      <fixr:field id="123" name="GapFillFlag" type="GapFillFlagCodeSet"/>
+      <fixr:field id="124" name="NoExecs" type="int"/>
+      <fixr:field id="125" name="CxlType" type="char"/>
+      <fixr:field id="126" name="ExpireTime" type="UTCTimestamp"/>
+      <fixr:field id="127" name="DKReason" type="DKReasonCodeSet"/>
+      <fixr:field id="128" name="DeliverToCompID" type="String"/>
+      <fixr:field id="129" name="DeliverToSubID" type="String"/>
+      <fixr:field id="130" name="IOINaturalFlag" type="IOINaturalFlagCodeSet"/>
+      <fixr:field id="131" name="QuoteReqID" type="String"/>
+      <fixr:field id="132" name="BidPx" type="Price"/>
+      <fixr:field id="133" name="OfferPx" type="Price"/>
+      <fixr:field id="134" name="BidSize" type="Qty"/>
+      <fixr:field id="135" name="OfferSize" type="Qty"/>
+      <fixr:field id="136" name="NoMiscFees" type="int"/>
+      <fixr:field id="137" name="MiscFeeAmt" type="Amt"/>
+      <fixr:field id="138" name="MiscFeeCurr" type="Currency"/>
+      <fixr:field id="139" name="MiscFeeType" type="MiscFeeTypeCodeSet"/>
+      <fixr:field id="140" name="PrevClosePx" type="Price"/>
+      <fixr:field id="141" name="ResetSeqNumFlag" type="ResetSeqNumFlagCodeSet"/>
+      <fixr:field id="142" name="SenderLocationID" type="String"/>
+      <fixr:field id="143" name="TargetLocationID" type="String"/>
+      <fixr:field id="144" name="OnBehalfOfLocationID" type="String"/>
+      <fixr:field id="145" name="DeliverToLocationID" type="String"/>
+      <fixr:field id="146" name="NoRelatedSym" type="int"/>
+      <fixr:field id="147" name="Subject" type="String"/>
+      <fixr:field id="148" name="Headline" type="String"/>
+      <fixr:field id="149" name="URLLink" type="String"/>
+      <fixr:field id="150" name="ExecType" type="ExecTypeCodeSet"/>
+      <fixr:field id="151" name="LeavesQty" type="Qty"/>
+      <fixr:field id="152" name="CashOrderQty" type="Qty"/>
+      <fixr:field id="153" name="AllocAvgPx" type="Price"/>
+      <fixr:field id="154" name="AllocNetMoney" type="Amt"/>
+      <fixr:field id="155" name="SettlCurrFxRate" type="float"/>
+      <fixr:field id="156" name="SettlCurrFxRateCalc" type="char"/>
+      <fixr:field id="157" name="NumDaysInterest" type="int"/>
+      <fixr:field id="158" name="AccruedInterestRate" type="float"/>
+      <fixr:field id="159" name="AccruedInterestAmt" type="Amt"/>
+      <fixr:field id="160" name="SettlInstMode" type="SettlInstModeCodeSet"/>
+      <fixr:field id="161" name="AllocText" type="String"/>
+      <fixr:field id="162" name="SettlInstID" type="String"/>
+      <fixr:field id="163" name="SettlInstTransType" type="SettlInstTransTypeCodeSet"/>
+      <fixr:field id="164" name="EmailThreadID" type="String"/>
+      <fixr:field id="165" name="SettlInstSource" type="SettlInstSourceCodeSet"/>
+      <fixr:field id="166" name="SettlLocation" type="SettlLocationCodeSet"/>
+      <fixr:field id="167" name="SecurityType" type="SecurityTypeCodeSet"/>
+      <fixr:field id="168" name="EffectiveTime" type="UTCTimestamp"/>
+      <fixr:field id="169" name="StandInstDbType" type="StandInstDbTypeCodeSet"/>
+      <fixr:field id="170" name="StandInstDbName" type="String"/>
+      <fixr:field id="171" name="StandInstDbID" type="String"/>
+      <fixr:field id="172" name="SettlDeliveryType" type="int"/>
+      <fixr:field id="173" name="SettlDepositoryCode" type="String"/>
+      <fixr:field id="174" name="SettlBrkrCode" type="String"/>
+      <fixr:field id="175" name="SettlInstCode" type="String"/>
+      <fixr:field id="176" name="SecuritySettlAgentName" type="String"/>
+      <fixr:field id="177" name="SecuritySettlAgentCode" type="String"/>
+      <fixr:field id="178" name="SecuritySettlAgentAcctNum" type="String"/>
+      <fixr:field id="179" name="SecuritySettlAgentAcctName" type="String"/>
+      <fixr:field id="180" name="SecuritySettlAgentContactName" type="String"/>
+      <fixr:field id="181" name="SecuritySettlAgentContactPhone" type="String"/>
+      <fixr:field id="182" name="CashSettlAgentName" type="String"/>
+      <fixr:field id="183" name="CashSettlAgentCode" type="String"/>
+      <fixr:field id="184" name="CashSettlAgentAcctNum" type="String"/>
+      <fixr:field id="185" name="CashSettlAgentAcctName" type="String"/>
+      <fixr:field id="186" name="CashSettlAgentContactName" type="String"/>
+      <fixr:field id="187" name="CashSettlAgentContactPhone" type="String"/>
+      <fixr:field id="188" name="BidSpotRate" type="Price"/>
+      <fixr:field id="189" name="BidForwardPoints" type="PriceOffset"/>
+      <fixr:field id="190" name="OfferSpotRate" type="Price"/>
+      <fixr:field id="191" name="OfferForwardPoints" type="PriceOffset"/>
+      <fixr:field id="192" name="OrderQty2" type="Qty"/>
+      <fixr:field id="193" name="FutSettDate2" type="LocalMktDate"/>
+      <fixr:field id="194" name="LastSpotRate" type="Price"/>
+      <fixr:field id="195" name="LastForwardPoints" type="PriceOffset"/>
+      <fixr:field id="196" name="AllocLinkID" type="String"/>
+      <fixr:field id="197" name="AllocLinkType" type="AllocLinkTypeCodeSet"/>
+      <fixr:field id="198" name="SecondaryOrderID" type="String"/>
+      <fixr:field id="199" name="NoIOIQualifiers" type="int"/>
+      <fixr:field id="200" name="MaturityMonthYear" type="MonthYear"/>
+      <fixr:field id="201" name="PutOrCall" type="PutOrCallCodeSet"/>
+      <fixr:field id="202" name="StrikePrice" type="Price"/>
+      <fixr:field id="203" name="CoveredOrUncovered" type="CoveredOrUncoveredCodeSet"/>
+      <fixr:field id="204" name="CustomerOrFirm" type="CustomerOrFirmCodeSet"/>
+      <fixr:field id="205" name="MaturityDay" type="DayOfMonth"/>
+      <fixr:field id="206" name="OptAttribute" type="char"/>
+      <fixr:field id="207" name="SecurityExchange" type="Exchange"/>
+      <fixr:field id="208"
+                  name="NotifyBrokerOfCredit"
+                  type="NotifyBrokerOfCreditCodeSet"/>
+      <fixr:field id="209" name="AllocHandlInst" type="AllocHandlInstCodeSet"/>
+      <fixr:field id="210" name="MaxShow" type="Qty"/>
+      <fixr:field id="211" name="PegDifference" type="PriceOffset"/>
+      <fixr:field id="212" name="XmlDataLen" type="Length"/>
+      <fixr:field id="213" name="XmlData" type="data"/>
+      <fixr:field id="214" name="SettlInstRefID" type="String"/>
+      <fixr:field id="215" name="NoRoutingIDs" type="int"/>
+      <fixr:field id="216" name="RoutingType" type="RoutingTypeCodeSet"/>
+      <fixr:field id="217" name="RoutingID" type="String"/>
+      <fixr:field id="218" name="SpreadToBenchmark" type="PriceOffset"/>
+      <fixr:field id="219" name="Benchmark" type="BenchmarkCodeSet"/>
+      <fixr:field id="223" name="CouponRate" type="float"/>
+      <fixr:field id="231" name="ContractMultiplier" type="float"/>
+      <fixr:field id="262" name="MDReqID" type="String"/>
+      <fixr:field id="263"
+                  name="SubscriptionRequestType"
+                  type="SubscriptionRequestTypeCodeSet"/>
+      <fixr:field id="264" name="MarketDepth" type="int"/>
+      <fixr:field id="265" name="MDUpdateType" type="MDUpdateTypeCodeSet"/>
+      <fixr:field id="266" name="AggregatedBook" type="AggregatedBookCodeSet"/>
+      <fixr:field id="267" name="NoMDEntryTypes" type="int"/>
+      <fixr:field id="268" name="NoMDEntries" type="int"/>
+      <fixr:field id="269" name="MDEntryType" type="MDEntryTypeCodeSet"/>
+      <fixr:field id="270" name="MDEntryPx" type="Price"/>
+      <fixr:field id="271" name="MDEntrySize" type="Qty"/>
+      <fixr:field id="272" name="MDEntryDate" type="UTCDATE"/>
+      <fixr:field id="273" name="MDEntryTime" type="UTCTimeOnly"/>
+      <fixr:field id="274" name="TickDirection" type="TickDirectionCodeSet"/>
+      <fixr:field id="275" name="MDMkt" type="Exchange"/>
+      <fixr:field id="276" name="QuoteCondition" type="QuoteConditionCodeSet"/>
+      <fixr:field id="277" name="TradeCondition" type="TradeConditionCodeSet"/>
+      <fixr:field id="278" name="MDEntryID" type="String"/>
+      <fixr:field id="279" name="MDUpdateAction" type="MDUpdateActionCodeSet"/>
+      <fixr:field id="280" name="MDEntryRefID" type="String"/>
+      <fixr:field id="281" name="MDReqRejReason" type="MDReqRejReasonCodeSet"/>
+      <fixr:field id="282" name="MDEntryOriginator" type="String"/>
+      <fixr:field id="283" name="LocationID" type="String"/>
+      <fixr:field id="284" name="DeskID" type="String"/>
+      <fixr:field id="285" name="DeleteReason" type="DeleteReasonCodeSet"/>
+      <fixr:field id="286"
+                  name="OpenCloseSettleFlag"
+                  type="OpenCloseSettleFlagCodeSet"/>
+      <fixr:field id="287" name="SellerDays" type="int"/>
+      <fixr:field id="288" name="MDEntryBuyer" type="String"/>
+      <fixr:field id="289" name="MDEntrySeller" type="String"/>
+      <fixr:field id="290" name="MDEntryPositionNo" type="int"/>
+      <fixr:field id="291" name="FinancialStatus" type="FinancialStatusCodeSet"/>
+      <fixr:field id="292" name="CorporateAction" type="CorporateActionCodeSet"/>
+      <fixr:field id="293" name="DefBidSize" type="Qty"/>
+      <fixr:field id="294" name="DefOfferSize" type="Qty"/>
+      <fixr:field id="295" name="NoQuoteEntries" type="int"/>
+      <fixr:field id="296" name="NoQuoteSets" type="int"/>
+      <fixr:field id="297" name="QuoteStatus" type="QuoteStatusCodeSet"/>
+      <fixr:field id="298" name="QuoteCancelType" type="QuoteCancelTypeCodeSet"/>
+      <fixr:field id="299" name="QuoteEntryID" type="String"/>
+      <fixr:field id="300" name="QuoteRejectReason" type="QuoteRejectReasonCodeSet"/>
+      <fixr:field id="301" name="QuoteResponseLevel" type="QuoteResponseLevelCodeSet"/>
+      <fixr:field id="302" name="QuoteSetID" type="String"/>
+      <fixr:field id="303" name="QuoteRequestType" type="QuoteRequestTypeCodeSet"/>
+      <fixr:field id="304" name="TotQuoteEntries" type="int"/>
+      <fixr:field id="305" name="UnderlyingIDSource" type="String"/>
+      <fixr:field id="306" name="UnderlyingIssuer" type="String"/>
+      <fixr:field id="307" name="UnderlyingSecurityDesc" type="String"/>
+      <fixr:field id="308" name="UnderlyingSecurityExchange" type="Exchange"/>
+      <fixr:field id="309" name="UnderlyingSecurityID" type="String"/>
+      <fixr:field id="310" name="UnderlyingSecurityType" type="String"/>
+      <fixr:field id="311" name="UnderlyingSymbol" type="String"/>
+      <fixr:field id="312" name="UnderlyingSymbolSfx" type="String"/>
+      <fixr:field id="313" name="UnderlyingMaturityMonthYear" type="MonthYear"/>
+      <fixr:field id="314" name="UnderlyingMaturityDay" type="DayOfMonth"/>
+      <fixr:field id="315" name="UnderlyingPutOrCall" type="int"/>
+      <fixr:field id="316" name="UnderlyingStrikePrice" type="Price"/>
+      <fixr:field id="317" name="UnderlyingOptAttribute" type="char"/>
+      <fixr:field id="318" name="UnderlyingCurrency" type="Currency"/>
+      <fixr:field id="319" name="RatioQty" type="Qty"/>
+      <fixr:field id="320" name="SecurityReqID" type="String"/>
+      <fixr:field id="321"
+                  name="SecurityRequestType"
+                  type="SecurityRequestTypeCodeSet"/>
+      <fixr:field id="322" name="SecurityResponseID" type="String"/>
+      <fixr:field id="323"
+                  name="SecurityResponseType"
+                  type="SecurityResponseTypeCodeSet"/>
+      <fixr:field id="324" name="SecurityStatusReqID" type="String"/>
+      <fixr:field id="325"
+                  name="UnsolicitedIndicator"
+                  type="UnsolicitedIndicatorCodeSet"/>
+      <fixr:field id="326"
+                  name="SecurityTradingStatus"
+                  type="SecurityTradingStatusCodeSet"/>
+      <fixr:field id="327" name="HaltReasonChar" type="HaltReasonCharCodeSet"/>
+      <fixr:field id="328" name="InViewOfCommon" type="InViewOfCommonCodeSet"/>
+      <fixr:field id="329" name="DueToRelated" type="DueToRelatedCodeSet"/>
+      <fixr:field id="330" name="BuyVolume" type="Qty"/>
+      <fixr:field id="331" name="SellVolume" type="Qty"/>
+      <fixr:field id="332" name="HighPx" type="Price"/>
+      <fixr:field id="333" name="LowPx" type="Price"/>
+      <fixr:field id="334" name="Adjustment" type="AdjustmentCodeSet"/>
+      <fixr:field id="335" name="TradSesReqID" type="String"/>
+      <fixr:field id="336" name="TradingSessionID" type="String"/>
+      <fixr:field id="337" name="ContraTrader" type="String"/>
+      <fixr:field id="338" name="TradSesMethod" type="TradSesMethodCodeSet"/>
+      <fixr:field id="339" name="TradSesMode" type="TradSesModeCodeSet"/>
+      <fixr:field id="340" name="TradSesStatus" type="TradSesStatusCodeSet"/>
+      <fixr:field id="341" name="TradSesStartTime" type="UTCTimestamp"/>
+      <fixr:field id="342" name="TradSesOpenTime" type="UTCTimestamp"/>
+      <fixr:field id="343" name="TradSesPreCloseTime" type="UTCTimestamp"/>
+      <fixr:field id="344" name="TradSesCloseTime" type="UTCTimestamp"/>
+      <fixr:field id="345" name="TradSesEndTime" type="UTCTimestamp"/>
+      <fixr:field id="346" name="NumberOfOrders" type="int"/>
+      <fixr:field id="347" name="MessageEncoding" type="MessageEncodingCodeSet"/>
+      <fixr:field id="348" name="EncodedIssuerLen" type="Length"/>
+      <fixr:field id="349" name="EncodedIssuer" type="data"/>
+      <fixr:field id="350" name="EncodedSecurityDescLen" type="Length"/>
+      <fixr:field id="351" name="EncodedSecurityDesc" type="data"/>
+      <fixr:field id="352" name="EncodedListExecInstLen" type="Length"/>
+      <fixr:field id="353" name="EncodedListExecInst" type="data"/>
+      <fixr:field id="354" name="EncodedTextLen" type="Length"/>
+      <fixr:field id="355" name="EncodedText" type="data"/>
+      <fixr:field id="356" name="EncodedSubjectLen" type="Length"/>
+      <fixr:field id="357" name="EncodedSubject" type="data"/>
+      <fixr:field id="358" name="EncodedHeadlineLen" type="Length"/>
+      <fixr:field id="359" name="EncodedHeadline" type="data"/>
+      <fixr:field id="360" name="EncodedAllocTextLen" type="Length"/>
+      <fixr:field id="361" name="EncodedAllocText" type="data"/>
+      <fixr:field id="362" name="EncodedUnderlyingIssuerLen" type="Length"/>
+      <fixr:field id="363" name="EncodedUnderlyingIssuer" type="data"/>
+      <fixr:field id="364" name="EncodedUnderlyingSecurityDescLen" type="Length"/>
+      <fixr:field id="365" name="EncodedUnderlyingSecurityDesc" type="data"/>
+      <fixr:field id="366" name="AllocPrice" type="Price"/>
+      <fixr:field id="367" name="QuoteSetValidUntilTime" type="UTCTimestamp"/>
+      <fixr:field id="368"
+                  name="QuoteEntryRejectReason"
+                  type="QuoteEntryRejectReasonCodeSet"/>
+      <fixr:field id="369" name="LastMsgSeqNumProcessed" type="int"/>
+      <fixr:field id="370" name="OnBehalfOfSendingTime" type="UTCTimestamp"/>
+      <fixr:field id="371" name="RefTagID" type="int"/>
+      <fixr:field id="372" name="RefMsgType" type="String"/>
+      <fixr:field id="373"
+                  name="SessionRejectReason"
+                  type="SessionRejectReasonCodeSet"/>
+      <fixr:field id="374"
+                  name="BidRequestTransType"
+                  type="BidRequestTransTypeCodeSet"/>
+      <fixr:field id="375" name="ContraBroker" type="String"/>
+      <fixr:field id="376" name="ComplianceID" type="String"/>
+      <fixr:field id="377" name="SolicitedFlag" type="SolicitedFlagCodeSet"/>
+      <fixr:field id="378"
+                  name="ExecRestatementReason"
+                  type="ExecRestatementReasonCodeSet"/>
+      <fixr:field id="379" name="BusinessRejectRefID" type="String"/>
+      <fixr:field id="380"
+                  name="BusinessRejectReason"
+                  type="BusinessRejectReasonCodeSet"/>
+      <fixr:field id="381" name="GrossTradeAmt" type="Amt"/>
+      <fixr:field id="382" name="NoContraBrokers" type="int"/>
+      <fixr:field id="383" name="MaxMessageSize" type="int"/>
+      <fixr:field id="384" name="NoMsgTypes" type="int"/>
+      <fixr:field id="385" name="MsgDirection" type="MsgDirectionCodeSet"/>
+      <fixr:field id="386" name="NoTradingSessions" type="int"/>
+      <fixr:field id="387" name="TotalVolumeTraded" type="Qty"/>
+      <fixr:field id="388" name="DiscretionInst" type="DiscretionInstCodeSet"/>
+      <fixr:field id="389" name="DiscretionOffset" type="PriceOffset"/>
+      <fixr:field id="390" name="BidID" type="String"/>
+      <fixr:field id="391" name="ClientBidID" type="String"/>
+      <fixr:field id="392" name="ListName" type="String"/>
+      <fixr:field id="393" name="TotalNumSecurities" type="int"/>
+      <fixr:field id="394" name="BidType" type="int"/>
+      <fixr:field id="395" name="NumTickets" type="int"/>
+      <fixr:field id="396" name="SideValue1" type="Amt"/>
+      <fixr:field id="397" name="SideValue2" type="Amt"/>
+      <fixr:field id="398" name="NoBidDescriptors" type="int"/>
+      <fixr:field id="399" name="BidDescriptorType" type="int"/>
+      <fixr:field id="400" name="BidDescriptor" type="String"/>
+      <fixr:field id="401" name="SideValueInd" type="int"/>
+      <fixr:field id="402" name="LiquidityPctLow" type="float"/>
+      <fixr:field id="403" name="LiquidityPctHigh" type="float"/>
+      <fixr:field id="404" name="LiquidityValue" type="Amt"/>
+      <fixr:field id="405" name="EFPTrackingError" type="float"/>
+      <fixr:field id="406" name="FairValue" type="Amt"/>
+      <fixr:field id="407" name="OutsideIndexPct" type="float"/>
+      <fixr:field id="408" name="ValueOfFutures" type="Amt"/>
+      <fixr:field id="409" name="LiquidityIndType" type="LiquidityIndTypeCodeSet"/>
+      <fixr:field id="410" name="WtAverageLiquidity" type="float"/>
+      <fixr:field id="411"
+                  name="ExchangeForPhysical"
+                  type="ExchangeForPhysicalCodeSet"/>
+      <fixr:field id="412" name="OutMainCntryUIndex" type="Amt"/>
+      <fixr:field id="413" name="CrossPercent" type="float"/>
+      <fixr:field id="414" name="ProgRptReqs" type="ProgRptReqsCodeSet"/>
+      <fixr:field id="415" name="ProgPeriodInterval" type="int"/>
+      <fixr:field id="416" name="IncTaxInd" type="IncTaxIndCodeSet"/>
+      <fixr:field id="417" name="NumBidders" type="int"/>
+      <fixr:field id="418" name="TradeType" type="TradeTypeCodeSet"/>
+      <fixr:field id="419" name="BasisPxType" type="BasisPxTypeCodeSet"/>
+      <fixr:field id="420" name="NoBidComponents" type="int"/>
+      <fixr:field id="421" name="Country" type="String"/>
+      <fixr:field id="422" name="TotNoStrikes" type="int"/>
+      <fixr:field id="423" name="PriceType" type="PriceTypeCodeSet"/>
+      <fixr:field id="424" name="DayOrderQty" type="Qty"/>
+      <fixr:field id="425" name="DayCumQty" type="Qty"/>
+      <fixr:field id="426" name="DayAvgPx" type="Price"/>
+      <fixr:field id="427" name="GTBookingInst" type="GTBookingInstCodeSet"/>
+      <fixr:field id="428" name="NoStrikes" type="int"/>
+      <fixr:field id="429" name="ListStatusType" type="int"/>
+      <fixr:field id="430" name="NetGrossInd" type="NetGrossIndCodeSet"/>
+      <fixr:field id="431" name="ListOrderStatus" type="int"/>
+      <fixr:field id="432" name="ExpireDate" type="LocalMktDate"/>
+      <fixr:field id="433" name="ListExecInstType" type="ListExecInstTypeCodeSet"/>
+      <fixr:field id="434" name="CxlRejResponseTo" type="CxlRejResponseToCodeSet"/>
+      <fixr:field id="435" name="UnderlyingCouponRate" type="float"/>
+      <fixr:field id="436" name="UnderlyingContractMultiplier" type="float"/>
+      <fixr:field id="437" name="ContraTradeQty" type="Qty"/>
+      <fixr:field id="438" name="ContraTradeTime" type="UTCTimestamp"/>
+      <fixr:field id="439" name="ClearingFirm" type="String"/>
+      <fixr:field id="440" name="ClearingAccount" type="String"/>
+      <fixr:field id="441" name="LiquidityNumSecurities" type="int"/>
+      <fixr:field id="442"
+                  name="MultiLegReportingType"
+                  type="MultiLegReportingTypeCodeSet"/>
+      <fixr:field id="443" name="StrikeTime" type="UTCTimestamp"/>
+      <fixr:field id="444" name="ListStatusText" type="String"/>
+      <fixr:field id="445" name="EncodedListStatusTextLen" type="Length"/>
+      <fixr:field id="446" name="EncodedListStatusText" type="data"/>
+   </fixr:fields>
+   <fixr:components>
+      <fixr:component id="1001" name="StandardHeader">
+         <fixr:fieldRef id="8" name="BeginString" presence="required"/>
+         <fixr:fieldRef id="9" name="BodyLength" presence="required"/>
+         <fixr:fieldRef id="35" name="MsgType" presence="required"/>
+         <fixr:fieldRef id="49" name="SenderCompID" presence="required"/>
+         <fixr:fieldRef id="56" name="TargetCompID" presence="required"/>
+         <fixr:fieldRef id="115" name="OnBehalfOfCompID"/>
+         <fixr:fieldRef id="128" name="DeliverToCompID"/>
+         <fixr:fieldRef id="90" name="SecureDataLen"/>
+         <fixr:fieldRef id="91" name="SecureData"/>
+         <fixr:fieldRef id="34" name="MsgSeqNum" presence="required"/>
+         <fixr:fieldRef id="50" name="SenderSubID"/>
+         <fixr:fieldRef id="142" name="SenderLocationID"/>
+         <fixr:fieldRef id="57" name="TargetSubID"/>
+         <fixr:fieldRef id="143" name="TargetLocationID"/>
+         <fixr:fieldRef id="116" name="OnBehalfOfSubID"/>
+         <fixr:fieldRef id="144" name="OnBehalfOfLocationID"/>
+         <fixr:fieldRef id="129" name="DeliverToSubID"/>
+         <fixr:fieldRef id="145" name="DeliverToLocationID"/>
+         <fixr:fieldRef id="43" name="PossDupFlag"/>
+         <fixr:fieldRef id="97" name="PossResend"/>
+         <fixr:fieldRef id="52" name="SendingTime" presence="required"/>
+         <fixr:fieldRef id="122" name="OrigSendingTime"/>
+         <fixr:fieldRef id="212" name="XmlDataLen"/>
+         <fixr:fieldRef id="213" name="XmlData"/>
+         <fixr:fieldRef id="347" name="MessageEncoding"/>
+         <fixr:fieldRef id="369" name="LastMsgSeqNumProcessed"/>
+         <fixr:fieldRef id="370" name="OnBehalfOfSendingTime"/>
+      </fixr:component>
+      <fixr:component id="1002" name="StandardTrailer">
+         <fixr:fieldRef id="93" name="SignatureLength"/>
+         <fixr:fieldRef id="89" name="Signature"/>
+         <fixr:fieldRef id="10" name="CheckSum" presence="required"/>
+      </fixr:component>
+   </fixr:components>
+   <fixr:groups/>
+   <fixr:messages>
+      <fixr:message name="Heartbeat" msgType="0" id="1">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="112" name="TestReqID"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="TestRequest" msgType="1" id="2">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="112" name="TestReqID" presence="required"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="ResendRequest" msgType="2" id="3">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="7" name="BeginSeqNo" presence="required"/>
+            <fixr:fieldRef id="16" name="EndSeqNo" presence="required"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="Reject" msgType="3" id="4">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="45" name="RefSeqNum" presence="required"/>
+            <fixr:fieldRef id="371" name="RefTagID"/>
+            <fixr:fieldRef id="372" name="RefMsgType"/>
+            <fixr:fieldRef id="373" name="SessionRejectReason"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="SequenceReset" msgType="4" id="5">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="123" name="GapFillFlag"/>
+            <fixr:fieldRef id="36" name="NewSeqNo" presence="required"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="Logout" msgType="5" id="6">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="IOI" msgType="6" id="7">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="23" name="IOIid" presence="required"/>
+            <fixr:fieldRef id="28" name="IOITransType" presence="required"/>
+            <fixr:fieldRef id="26" name="IOIRefID"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="54" name="Side" presence="required"/>
+            <fixr:fieldRef id="27" name="IOIShares" presence="required"/>
+            <fixr:fieldRef id="44" name="Price"/>
+            <fixr:fieldRef id="15" name="Currency"/>
+            <fixr:fieldRef id="62" name="ValidUntilTime"/>
+            <fixr:fieldRef id="25" name="IOIQltyInd"/>
+            <fixr:fieldRef id="130" name="IOINaturalFlag"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:fieldRef id="60" name="TransactTime"/>
+            <fixr:fieldRef id="149" name="URLLink"/>
+            <fixr:fieldRef id="218" name="SpreadToBenchmark"/>
+            <fixr:fieldRef id="219" name="Benchmark"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="Advertisement" msgType="7" id="8">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="2" name="AdvId" presence="required"/>
+            <fixr:fieldRef id="5" name="AdvTransType" presence="required"/>
+            <fixr:fieldRef id="3" name="AdvRefID"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="4" name="AdvSide" presence="required"/>
+            <fixr:fieldRef id="53" name="Shares" presence="required"/>
+            <fixr:fieldRef id="44" name="Price"/>
+            <fixr:fieldRef id="15" name="Currency"/>
+            <fixr:fieldRef id="75" name="TradeDate"/>
+            <fixr:fieldRef id="60" name="TransactTime"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:fieldRef id="149" name="URLLink"/>
+            <fixr:fieldRef id="30" name="LastMkt"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="ExecutionReport" msgType="8" id="9">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="37" name="OrderID" presence="required"/>
+            <fixr:fieldRef id="198" name="SecondaryOrderID"/>
+            <fixr:fieldRef id="11" name="ClOrdID"/>
+            <fixr:fieldRef id="41" name="OrigClOrdID"/>
+            <fixr:fieldRef id="109" name="ClientID"/>
+            <fixr:fieldRef id="76" name="ExecBroker"/>
+            <fixr:fieldRef id="66" name="ListID"/>
+            <fixr:fieldRef id="17" name="ExecID" presence="required"/>
+            <fixr:fieldRef id="20" name="ExecTransType" presence="required"/>
+            <fixr:fieldRef id="19" name="ExecRefID"/>
+            <fixr:fieldRef id="150" name="ExecType" presence="required"/>
+            <fixr:fieldRef id="39" name="OrdStatus" presence="required"/>
+            <fixr:fieldRef id="103" name="OrdRejReason"/>
+            <fixr:fieldRef id="378" name="ExecRestatementReason"/>
+            <fixr:fieldRef id="1" name="Account"/>
+            <fixr:fieldRef id="63" name="SettlmntTyp"/>
+            <fixr:fieldRef id="64" name="FutSettDate"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="54" name="Side" presence="required"/>
+            <fixr:fieldRef id="38" name="OrderQty"/>
+            <fixr:fieldRef id="152" name="CashOrderQty"/>
+            <fixr:fieldRef id="40" name="OrdType"/>
+            <fixr:fieldRef id="44" name="Price"/>
+            <fixr:fieldRef id="99" name="StopPx"/>
+            <fixr:fieldRef id="211" name="PegDifference"/>
+            <fixr:fieldRef id="388" name="DiscretionInst"/>
+            <fixr:fieldRef id="389" name="DiscretionOffset"/>
+            <fixr:fieldRef id="15" name="Currency"/>
+            <fixr:fieldRef id="376" name="ComplianceID"/>
+            <fixr:fieldRef id="377" name="SolicitedFlag"/>
+            <fixr:fieldRef id="59" name="TimeInForce"/>
+            <fixr:fieldRef id="168" name="EffectiveTime"/>
+            <fixr:fieldRef id="432" name="ExpireDate"/>
+            <fixr:fieldRef id="126" name="ExpireTime"/>
+            <fixr:fieldRef id="18" name="ExecInst"/>
+            <fixr:fieldRef id="47" name="Rule80A"/>
+            <fixr:fieldRef id="32" name="LastShares"/>
+            <fixr:fieldRef id="31" name="LastPx"/>
+            <fixr:fieldRef id="194" name="LastSpotRate"/>
+            <fixr:fieldRef id="195" name="LastForwardPoints"/>
+            <fixr:fieldRef id="30" name="LastMkt"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:fieldRef id="29" name="LastCapacity"/>
+            <fixr:fieldRef id="151" name="LeavesQty" presence="required"/>
+            <fixr:fieldRef id="14" name="CumQty" presence="required"/>
+            <fixr:fieldRef id="6" name="AvgPx" presence="required"/>
+            <fixr:fieldRef id="424" name="DayOrderQty"/>
+            <fixr:fieldRef id="425" name="DayCumQty"/>
+            <fixr:fieldRef id="426" name="DayAvgPx"/>
+            <fixr:fieldRef id="427" name="GTBookingInst"/>
+            <fixr:fieldRef id="75" name="TradeDate"/>
+            <fixr:fieldRef id="60" name="TransactTime"/>
+            <fixr:fieldRef id="113" name="ReportToExch"/>
+            <fixr:fieldRef id="12" name="Commission"/>
+            <fixr:fieldRef id="13" name="CommType"/>
+            <fixr:fieldRef id="381" name="GrossTradeAmt"/>
+            <fixr:fieldRef id="119" name="SettlCurrAmt"/>
+            <fixr:fieldRef id="120" name="SettlCurrency"/>
+            <fixr:fieldRef id="155" name="SettlCurrFxRate"/>
+            <fixr:fieldRef id="156" name="SettlCurrFxRateCalc"/>
+            <fixr:fieldRef id="21" name="HandlInst"/>
+            <fixr:fieldRef id="110" name="MinQty"/>
+            <fixr:fieldRef id="111" name="MaxFloor"/>
+            <fixr:fieldRef id="77" name="OpenClose"/>
+            <fixr:fieldRef id="210" name="MaxShow"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:fieldRef id="193" name="FutSettDate2"/>
+            <fixr:fieldRef id="192" name="OrderQty2"/>
+            <fixr:fieldRef id="439" name="ClearingFirm"/>
+            <fixr:fieldRef id="440" name="ClearingAccount"/>
+            <fixr:fieldRef id="442" name="MultiLegReportingType"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="OrderCancelReject" msgType="9" id="10">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="37" name="OrderID" presence="required"/>
+            <fixr:fieldRef id="198" name="SecondaryOrderID"/>
+            <fixr:fieldRef id="11" name="ClOrdID" presence="required"/>
+            <fixr:fieldRef id="41" name="OrigClOrdID" presence="required"/>
+            <fixr:fieldRef id="39" name="OrdStatus" presence="required"/>
+            <fixr:fieldRef id="109" name="ClientID"/>
+            <fixr:fieldRef id="76" name="ExecBroker"/>
+            <fixr:fieldRef id="66" name="ListID"/>
+            <fixr:fieldRef id="1" name="Account"/>
+            <fixr:fieldRef id="60" name="TransactTime"/>
+            <fixr:fieldRef id="434" name="CxlRejResponseTo" presence="required"/>
+            <fixr:fieldRef id="102" name="CxlRejReason"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="Logon" msgType="A" id="11">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="98" name="EncryptMethod" presence="required"/>
+            <fixr:fieldRef id="108" name="HeartBtInt" presence="required"/>
+            <fixr:fieldRef id="95" name="RawDataLength"/>
+            <fixr:fieldRef id="96" name="RawData"/>
+            <fixr:fieldRef id="141" name="ResetSeqNumFlag"/>
+            <fixr:fieldRef id="383" name="MaxMessageSize"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="News" msgType="B" id="12">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="42" name="OrigTime"/>
+            <fixr:fieldRef id="61" name="Urgency"/>
+            <fixr:fieldRef id="148" name="Headline" presence="required"/>
+            <fixr:fieldRef id="358" name="EncodedHeadlineLen"/>
+            <fixr:fieldRef id="359" name="EncodedHeadline"/>
+            <fixr:fieldRef id="149" name="URLLink"/>
+            <fixr:fieldRef id="95" name="RawDataLength"/>
+            <fixr:fieldRef id="96" name="RawData"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="Email" msgType="C" id="13">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="164" name="EmailThreadID" presence="required"/>
+            <fixr:fieldRef id="94" name="EmailType" presence="required"/>
+            <fixr:fieldRef id="42" name="OrigTime"/>
+            <fixr:fieldRef id="147" name="Subject" presence="required"/>
+            <fixr:fieldRef id="356" name="EncodedSubjectLen"/>
+            <fixr:fieldRef id="357" name="EncodedSubject"/>
+            <fixr:fieldRef id="37" name="OrderID"/>
+            <fixr:fieldRef id="11" name="ClOrdID"/>
+            <fixr:fieldRef id="95" name="RawDataLength"/>
+            <fixr:fieldRef id="96" name="RawData"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="NewOrderSingle" msgType="D" id="14">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="11" name="ClOrdID" presence="required"/>
+            <fixr:fieldRef id="109" name="ClientID"/>
+            <fixr:fieldRef id="76" name="ExecBroker"/>
+            <fixr:fieldRef id="1" name="Account"/>
+            <fixr:fieldRef id="63" name="SettlmntTyp"/>
+            <fixr:fieldRef id="64" name="FutSettDate"/>
+            <fixr:fieldRef id="21" name="HandlInst" presence="required"/>
+            <fixr:fieldRef id="18" name="ExecInst"/>
+            <fixr:fieldRef id="110" name="MinQty"/>
+            <fixr:fieldRef id="111" name="MaxFloor"/>
+            <fixr:fieldRef id="100" name="ExDestination"/>
+            <fixr:fieldRef id="81" name="ProcessCode"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="140" name="PrevClosePx"/>
+            <fixr:fieldRef id="54" name="Side" presence="required"/>
+            <fixr:fieldRef id="114" name="LocateReqd"/>
+            <fixr:fieldRef id="60" name="TransactTime" presence="required"/>
+            <fixr:fieldRef id="38" name="OrderQty"/>
+            <fixr:fieldRef id="152" name="CashOrderQty"/>
+            <fixr:fieldRef id="40" name="OrdType" presence="required"/>
+            <fixr:fieldRef id="44" name="Price"/>
+            <fixr:fieldRef id="99" name="StopPx"/>
+            <fixr:fieldRef id="15" name="Currency"/>
+            <fixr:fieldRef id="376" name="ComplianceID"/>
+            <fixr:fieldRef id="377" name="SolicitedFlag"/>
+            <fixr:fieldRef id="23" name="IOIid"/>
+            <fixr:fieldRef id="117" name="QuoteID"/>
+            <fixr:fieldRef id="59" name="TimeInForce"/>
+            <fixr:fieldRef id="168" name="EffectiveTime"/>
+            <fixr:fieldRef id="432" name="ExpireDate"/>
+            <fixr:fieldRef id="126" name="ExpireTime"/>
+            <fixr:fieldRef id="427" name="GTBookingInst"/>
+            <fixr:fieldRef id="12" name="Commission"/>
+            <fixr:fieldRef id="13" name="CommType"/>
+            <fixr:fieldRef id="47" name="Rule80A"/>
+            <fixr:fieldRef id="121" name="ForexReq"/>
+            <fixr:fieldRef id="120" name="SettlCurrency"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:fieldRef id="193" name="FutSettDate2"/>
+            <fixr:fieldRef id="192" name="OrderQty2"/>
+            <fixr:fieldRef id="77" name="OpenClose"/>
+            <fixr:fieldRef id="203" name="CoveredOrUncovered"/>
+            <fixr:fieldRef id="204" name="CustomerOrFirm"/>
+            <fixr:fieldRef id="210" name="MaxShow"/>
+            <fixr:fieldRef id="211" name="PegDifference"/>
+            <fixr:fieldRef id="388" name="DiscretionInst"/>
+            <fixr:fieldRef id="389" name="DiscretionOffset"/>
+            <fixr:fieldRef id="439" name="ClearingFirm"/>
+            <fixr:fieldRef id="440" name="ClearingAccount"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="NewOrderList" msgType="E" id="15">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="66" name="ListID" presence="required"/>
+            <fixr:fieldRef id="390" name="BidID"/>
+            <fixr:fieldRef id="391" name="ClientBidID"/>
+            <fixr:fieldRef id="414" name="ProgRptReqs"/>
+            <fixr:fieldRef id="394" name="BidType" presence="required"/>
+            <fixr:fieldRef id="415" name="ProgPeriodInterval"/>
+            <fixr:fieldRef id="433" name="ListExecInstType"/>
+            <fixr:fieldRef id="69" name="ListExecInst"/>
+            <fixr:fieldRef id="352" name="EncodedListExecInstLen"/>
+            <fixr:fieldRef id="353" name="EncodedListExecInst"/>
+            <fixr:fieldRef id="68" name="TotNoOrders" presence="required"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="OrderCancelRequest" msgType="F" id="16">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="41" name="OrigClOrdID" presence="required"/>
+            <fixr:fieldRef id="37" name="OrderID"/>
+            <fixr:fieldRef id="11" name="ClOrdID" presence="required"/>
+            <fixr:fieldRef id="66" name="ListID"/>
+            <fixr:fieldRef id="1" name="Account"/>
+            <fixr:fieldRef id="109" name="ClientID"/>
+            <fixr:fieldRef id="76" name="ExecBroker"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="54" name="Side" presence="required"/>
+            <fixr:fieldRef id="60" name="TransactTime" presence="required"/>
+            <fixr:fieldRef id="38" name="OrderQty"/>
+            <fixr:fieldRef id="152" name="CashOrderQty"/>
+            <fixr:fieldRef id="376" name="ComplianceID"/>
+            <fixr:fieldRef id="377" name="SolicitedFlag"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="OrderCancelReplaceRequest" msgType="G" id="17">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="37" name="OrderID"/>
+            <fixr:fieldRef id="109" name="ClientID"/>
+            <fixr:fieldRef id="76" name="ExecBroker"/>
+            <fixr:fieldRef id="41" name="OrigClOrdID" presence="required"/>
+            <fixr:fieldRef id="11" name="ClOrdID" presence="required"/>
+            <fixr:fieldRef id="66" name="ListID"/>
+            <fixr:fieldRef id="1" name="Account"/>
+            <fixr:fieldRef id="63" name="SettlmntTyp"/>
+            <fixr:fieldRef id="64" name="FutSettDate"/>
+            <fixr:fieldRef id="21" name="HandlInst" presence="required"/>
+            <fixr:fieldRef id="18" name="ExecInst"/>
+            <fixr:fieldRef id="110" name="MinQty"/>
+            <fixr:fieldRef id="111" name="MaxFloor"/>
+            <fixr:fieldRef id="100" name="ExDestination"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="54" name="Side" presence="required"/>
+            <fixr:fieldRef id="60" name="TransactTime" presence="required"/>
+            <fixr:fieldRef id="38" name="OrderQty"/>
+            <fixr:fieldRef id="152" name="CashOrderQty"/>
+            <fixr:fieldRef id="40" name="OrdType" presence="required"/>
+            <fixr:fieldRef id="44" name="Price"/>
+            <fixr:fieldRef id="99" name="StopPx"/>
+            <fixr:fieldRef id="211" name="PegDifference"/>
+            <fixr:fieldRef id="388" name="DiscretionInst"/>
+            <fixr:fieldRef id="389" name="DiscretionOffset"/>
+            <fixr:fieldRef id="376" name="ComplianceID"/>
+            <fixr:fieldRef id="377" name="SolicitedFlag"/>
+            <fixr:fieldRef id="15" name="Currency"/>
+            <fixr:fieldRef id="59" name="TimeInForce"/>
+            <fixr:fieldRef id="168" name="EffectiveTime"/>
+            <fixr:fieldRef id="432" name="ExpireDate"/>
+            <fixr:fieldRef id="126" name="ExpireTime"/>
+            <fixr:fieldRef id="427" name="GTBookingInst"/>
+            <fixr:fieldRef id="12" name="Commission"/>
+            <fixr:fieldRef id="13" name="CommType"/>
+            <fixr:fieldRef id="47" name="Rule80A"/>
+            <fixr:fieldRef id="121" name="ForexReq"/>
+            <fixr:fieldRef id="120" name="SettlCurrency"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:fieldRef id="193" name="FutSettDate2"/>
+            <fixr:fieldRef id="192" name="OrderQty2"/>
+            <fixr:fieldRef id="77" name="OpenClose"/>
+            <fixr:fieldRef id="203" name="CoveredOrUncovered"/>
+            <fixr:fieldRef id="204" name="CustomerOrFirm"/>
+            <fixr:fieldRef id="210" name="MaxShow"/>
+            <fixr:fieldRef id="114" name="LocateReqd"/>
+            <fixr:fieldRef id="439" name="ClearingFirm"/>
+            <fixr:fieldRef id="440" name="ClearingAccount"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="OrderStatusRequest" msgType="H" id="18">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="37" name="OrderID"/>
+            <fixr:fieldRef id="11" name="ClOrdID" presence="required"/>
+            <fixr:fieldRef id="109" name="ClientID"/>
+            <fixr:fieldRef id="1" name="Account"/>
+            <fixr:fieldRef id="76" name="ExecBroker"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="54" name="Side" presence="required"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="Allocation" msgType="J" id="19">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="70" name="AllocID" presence="required"/>
+            <fixr:fieldRef id="71" name="AllocTransType" presence="required"/>
+            <fixr:fieldRef id="72" name="RefAllocID"/>
+            <fixr:fieldRef id="196" name="AllocLinkID"/>
+            <fixr:fieldRef id="197" name="AllocLinkType"/>
+            <fixr:fieldRef id="54" name="Side" presence="required"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="53" name="Shares" presence="required"/>
+            <fixr:fieldRef id="30" name="LastMkt"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:fieldRef id="6" name="AvgPx" presence="required"/>
+            <fixr:fieldRef id="15" name="Currency"/>
+            <fixr:fieldRef id="74" name="AvgPrxPrecision"/>
+            <fixr:fieldRef id="75" name="TradeDate" presence="required"/>
+            <fixr:fieldRef id="60" name="TransactTime"/>
+            <fixr:fieldRef id="63" name="SettlmntTyp"/>
+            <fixr:fieldRef id="64" name="FutSettDate"/>
+            <fixr:fieldRef id="381" name="GrossTradeAmt"/>
+            <fixr:fieldRef id="118" name="NetMoney"/>
+            <fixr:fieldRef id="77" name="OpenClose"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:fieldRef id="157" name="NumDaysInterest"/>
+            <fixr:fieldRef id="158" name="AccruedInterestRate"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="ListCancelRequest" msgType="K" id="20">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="66" name="ListID" presence="required"/>
+            <fixr:fieldRef id="60" name="TransactTime" presence="required"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="ListExecute" msgType="L" id="21">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="66" name="ListID" presence="required"/>
+            <fixr:fieldRef id="391" name="ClientBidID"/>
+            <fixr:fieldRef id="390" name="BidID"/>
+            <fixr:fieldRef id="60" name="TransactTime" presence="required"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="ListStatusRequest" msgType="M" id="22">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="66" name="ListID" presence="required"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="ListStatus" msgType="N" id="23">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="66" name="ListID" presence="required"/>
+            <fixr:fieldRef id="429" name="ListStatusType" presence="required"/>
+            <fixr:fieldRef id="82" name="NoRpts" presence="required"/>
+            <fixr:fieldRef id="431" name="ListOrderStatus" presence="required"/>
+            <fixr:fieldRef id="83" name="RptSeq" presence="required"/>
+            <fixr:fieldRef id="444" name="ListStatusText"/>
+            <fixr:fieldRef id="445" name="EncodedListStatusTextLen"/>
+            <fixr:fieldRef id="446" name="EncodedListStatusText"/>
+            <fixr:fieldRef id="60" name="TransactTime"/>
+            <fixr:fieldRef id="68" name="TotNoOrders" presence="required"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="AllocationAck" msgType="P" id="24">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="109" name="ClientID"/>
+            <fixr:fieldRef id="76" name="ExecBroker"/>
+            <fixr:fieldRef id="70" name="AllocID" presence="required"/>
+            <fixr:fieldRef id="75" name="TradeDate" presence="required"/>
+            <fixr:fieldRef id="60" name="TransactTime"/>
+            <fixr:fieldRef id="87" name="AllocStatus" presence="required"/>
+            <fixr:fieldRef id="88" name="AllocRejCode"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="DontKnowTrade" msgType="Q" id="25">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="37" name="OrderID" presence="required"/>
+            <fixr:fieldRef id="17" name="ExecID" presence="required"/>
+            <fixr:fieldRef id="127" name="DKReason" presence="required"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="54" name="Side" presence="required"/>
+            <fixr:fieldRef id="38" name="OrderQty"/>
+            <fixr:fieldRef id="152" name="CashOrderQty"/>
+            <fixr:fieldRef id="32" name="LastShares"/>
+            <fixr:fieldRef id="31" name="LastPx"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="QuoteRequest" msgType="R" id="26">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="131" name="QuoteReqID" presence="required"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="Quote" msgType="S" id="27">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="131" name="QuoteReqID"/>
+            <fixr:fieldRef id="117" name="QuoteID" presence="required"/>
+            <fixr:fieldRef id="301" name="QuoteResponseLevel"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="132" name="BidPx"/>
+            <fixr:fieldRef id="133" name="OfferPx"/>
+            <fixr:fieldRef id="134" name="BidSize"/>
+            <fixr:fieldRef id="135" name="OfferSize"/>
+            <fixr:fieldRef id="62" name="ValidUntilTime"/>
+            <fixr:fieldRef id="188" name="BidSpotRate"/>
+            <fixr:fieldRef id="190" name="OfferSpotRate"/>
+            <fixr:fieldRef id="189" name="BidForwardPoints"/>
+            <fixr:fieldRef id="191" name="OfferForwardPoints"/>
+            <fixr:fieldRef id="60" name="TransactTime"/>
+            <fixr:fieldRef id="64" name="FutSettDate"/>
+            <fixr:fieldRef id="40" name="OrdType"/>
+            <fixr:fieldRef id="193" name="FutSettDate2"/>
+            <fixr:fieldRef id="192" name="OrderQty2"/>
+            <fixr:fieldRef id="15" name="Currency"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="SettlementInstructions" msgType="T" id="28">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="162" name="SettlInstID" presence="required"/>
+            <fixr:fieldRef id="163" name="SettlInstTransType" presence="required"/>
+            <fixr:fieldRef id="214" name="SettlInstRefID" presence="required"/>
+            <fixr:fieldRef id="160" name="SettlInstMode" presence="required"/>
+            <fixr:fieldRef id="165" name="SettlInstSource" presence="required"/>
+            <fixr:fieldRef id="79" name="AllocAccount" presence="required"/>
+            <fixr:fieldRef id="166" name="SettlLocation"/>
+            <fixr:fieldRef id="75" name="TradeDate"/>
+            <fixr:fieldRef id="70" name="AllocID"/>
+            <fixr:fieldRef id="30" name="LastMkt"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:fieldRef id="54" name="Side"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="168" name="EffectiveTime"/>
+            <fixr:fieldRef id="60" name="TransactTime" presence="required"/>
+            <fixr:fieldRef id="109" name="ClientID"/>
+            <fixr:fieldRef id="76" name="ExecBroker"/>
+            <fixr:fieldRef id="169" name="StandInstDbType"/>
+            <fixr:fieldRef id="170" name="StandInstDbName"/>
+            <fixr:fieldRef id="171" name="StandInstDbID"/>
+            <fixr:fieldRef id="172" name="SettlDeliveryType"/>
+            <fixr:fieldRef id="173" name="SettlDepositoryCode"/>
+            <fixr:fieldRef id="174" name="SettlBrkrCode"/>
+            <fixr:fieldRef id="175" name="SettlInstCode"/>
+            <fixr:fieldRef id="176" name="SecuritySettlAgentName"/>
+            <fixr:fieldRef id="177" name="SecuritySettlAgentCode"/>
+            <fixr:fieldRef id="178" name="SecuritySettlAgentAcctNum"/>
+            <fixr:fieldRef id="179" name="SecuritySettlAgentAcctName"/>
+            <fixr:fieldRef id="180" name="SecuritySettlAgentContactName"/>
+            <fixr:fieldRef id="181" name="SecuritySettlAgentContactPhone"/>
+            <fixr:fieldRef id="182" name="CashSettlAgentName"/>
+            <fixr:fieldRef id="183" name="CashSettlAgentCode"/>
+            <fixr:fieldRef id="184" name="CashSettlAgentAcctNum"/>
+            <fixr:fieldRef id="185" name="CashSettlAgentAcctName"/>
+            <fixr:fieldRef id="186" name="CashSettlAgentContactName"/>
+            <fixr:fieldRef id="187" name="CashSettlAgentContactPhone"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="MarketDataRequest" msgType="V" id="29">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="262" name="MDReqID" presence="required"/>
+            <fixr:fieldRef id="263" name="SubscriptionRequestType" presence="required"/>
+            <fixr:fieldRef id="264" name="MarketDepth" presence="required"/>
+            <fixr:fieldRef id="265" name="MDUpdateType"/>
+            <fixr:fieldRef id="266" name="AggregatedBook"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="MarketDataSnapshotFullRefresh" msgType="W" id="30">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="262" name="MDReqID"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="291" name="FinancialStatus"/>
+            <fixr:fieldRef id="292" name="CorporateAction"/>
+            <fixr:fieldRef id="387" name="TotalVolumeTraded"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="MarketDataIncrementalRefresh" msgType="X" id="31">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="262" name="MDReqID"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="MarketDataRequestReject" msgType="Y" id="32">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="262" name="MDReqID" presence="required"/>
+            <fixr:fieldRef id="281" name="MDReqRejReason"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="QuoteCancel" msgType="Z" id="33">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="131" name="QuoteReqID"/>
+            <fixr:fieldRef id="117" name="QuoteID" presence="required"/>
+            <fixr:fieldRef id="298" name="QuoteCancelType" presence="required"/>
+            <fixr:fieldRef id="301" name="QuoteResponseLevel"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="QuoteStatusRequest" msgType="a" id="34">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="117" name="QuoteID"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="54" name="Side"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="QuoteAcknowledgement" msgType="b" id="35">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="131" name="QuoteReqID"/>
+            <fixr:fieldRef id="117" name="QuoteID"/>
+            <fixr:fieldRef id="297" name="QuoteStatus" presence="required"/>
+            <fixr:fieldRef id="300" name="QuoteRejectReason"/>
+            <fixr:fieldRef id="301" name="QuoteResponseLevel"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="SecurityDefinitionRequest" msgType="c" id="36">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="320" name="SecurityReqID" presence="required"/>
+            <fixr:fieldRef id="321" name="SecurityRequestType" presence="required"/>
+            <fixr:fieldRef id="55" name="Symbol"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="15" name="Currency"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="SecurityDefinition" msgType="d" id="37">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="320" name="SecurityReqID" presence="required"/>
+            <fixr:fieldRef id="322" name="SecurityResponseID" presence="required"/>
+            <fixr:fieldRef id="323" name="SecurityResponseType"/>
+            <fixr:fieldRef id="393" name="TotalNumSecurities" presence="required"/>
+            <fixr:fieldRef id="55" name="Symbol"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="15" name="Currency"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="SecurityStatusRequest" msgType="e" id="38">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="324" name="SecurityStatusReqID" presence="required"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="15" name="Currency"/>
+            <fixr:fieldRef id="263" name="SubscriptionRequestType" presence="required"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="SecurityStatus" msgType="f" id="39">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="324" name="SecurityStatusReqID"/>
+            <fixr:fieldRef id="55" name="Symbol" presence="required"/>
+            <fixr:fieldRef id="65" name="SymbolSfx"/>
+            <fixr:fieldRef id="48" name="SecurityID"/>
+            <fixr:fieldRef id="22" name="IDSource"/>
+            <fixr:fieldRef id="167" name="SecurityType"/>
+            <fixr:fieldRef id="200" name="MaturityMonthYear"/>
+            <fixr:fieldRef id="205" name="MaturityDay"/>
+            <fixr:fieldRef id="201" name="PutOrCall"/>
+            <fixr:fieldRef id="202" name="StrikePrice"/>
+            <fixr:fieldRef id="206" name="OptAttribute"/>
+            <fixr:fieldRef id="231" name="ContractMultiplier"/>
+            <fixr:fieldRef id="223" name="CouponRate"/>
+            <fixr:fieldRef id="207" name="SecurityExchange"/>
+            <fixr:fieldRef id="106" name="Issuer"/>
+            <fixr:fieldRef id="348" name="EncodedIssuerLen"/>
+            <fixr:fieldRef id="349" name="EncodedIssuer"/>
+            <fixr:fieldRef id="107" name="SecurityDesc"/>
+            <fixr:fieldRef id="350" name="EncodedSecurityDescLen"/>
+            <fixr:fieldRef id="351" name="EncodedSecurityDesc"/>
+            <fixr:fieldRef id="15" name="Currency"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:fieldRef id="325" name="UnsolicitedIndicator"/>
+            <fixr:fieldRef id="326" name="SecurityTradingStatus"/>
+            <fixr:fieldRef id="291" name="FinancialStatus"/>
+            <fixr:fieldRef id="292" name="CorporateAction"/>
+            <fixr:fieldRef id="327" name="HaltReasonChar"/>
+            <fixr:fieldRef id="328" name="InViewOfCommon"/>
+            <fixr:fieldRef id="329" name="DueToRelated"/>
+            <fixr:fieldRef id="330" name="BuyVolume"/>
+            <fixr:fieldRef id="331" name="SellVolume"/>
+            <fixr:fieldRef id="332" name="HighPx"/>
+            <fixr:fieldRef id="333" name="LowPx"/>
+            <fixr:fieldRef id="31" name="LastPx"/>
+            <fixr:fieldRef id="60" name="TransactTime"/>
+            <fixr:fieldRef id="334" name="Adjustment"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="TradingSessionStatusRequest" msgType="g" id="40">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="335" name="TradSesReqID" presence="required"/>
+            <fixr:fieldRef id="336" name="TradingSessionID"/>
+            <fixr:fieldRef id="338" name="TradSesMethod"/>
+            <fixr:fieldRef id="339" name="TradSesMode"/>
+            <fixr:fieldRef id="263" name="SubscriptionRequestType" presence="required"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="TradingSessionStatus" msgType="h" id="41">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="335" name="TradSesReqID"/>
+            <fixr:fieldRef id="336" name="TradingSessionID" presence="required"/>
+            <fixr:fieldRef id="338" name="TradSesMethod"/>
+            <fixr:fieldRef id="339" name="TradSesMode"/>
+            <fixr:fieldRef id="325" name="UnsolicitedIndicator"/>
+            <fixr:fieldRef id="340" name="TradSesStatus" presence="required"/>
+            <fixr:fieldRef id="341" name="TradSesStartTime"/>
+            <fixr:fieldRef id="342" name="TradSesOpenTime"/>
+            <fixr:fieldRef id="343" name="TradSesPreCloseTime"/>
+            <fixr:fieldRef id="344" name="TradSesCloseTime"/>
+            <fixr:fieldRef id="345" name="TradSesEndTime"/>
+            <fixr:fieldRef id="387" name="TotalVolumeTraded"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="MassQuote" msgType="i" id="42">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="131" name="QuoteReqID"/>
+            <fixr:fieldRef id="117" name="QuoteID" presence="required"/>
+            <fixr:fieldRef id="301" name="QuoteResponseLevel"/>
+            <fixr:fieldRef id="293" name="DefBidSize"/>
+            <fixr:fieldRef id="294" name="DefOfferSize"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="BusinessMessageReject" msgType="j" id="43">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="45" name="RefSeqNum"/>
+            <fixr:fieldRef id="372" name="RefMsgType" presence="required"/>
+            <fixr:fieldRef id="379" name="BusinessRejectRefID"/>
+            <fixr:fieldRef id="380" name="BusinessRejectReason" presence="required"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="BidRequest" msgType="k" id="44">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="390" name="BidID"/>
+            <fixr:fieldRef id="391" name="ClientBidID" presence="required"/>
+            <fixr:fieldRef id="374" name="BidRequestTransType" presence="required"/>
+            <fixr:fieldRef id="392" name="ListName"/>
+            <fixr:fieldRef id="393" name="TotalNumSecurities" presence="required"/>
+            <fixr:fieldRef id="394" name="BidType" presence="required"/>
+            <fixr:fieldRef id="395" name="NumTickets"/>
+            <fixr:fieldRef id="15" name="Currency"/>
+            <fixr:fieldRef id="396" name="SideValue1"/>
+            <fixr:fieldRef id="397" name="SideValue2"/>
+            <fixr:fieldRef id="409" name="LiquidityIndType"/>
+            <fixr:fieldRef id="410" name="WtAverageLiquidity"/>
+            <fixr:fieldRef id="411" name="ExchangeForPhysical"/>
+            <fixr:fieldRef id="412" name="OutMainCntryUIndex"/>
+            <fixr:fieldRef id="413" name="CrossPercent"/>
+            <fixr:fieldRef id="414" name="ProgRptReqs"/>
+            <fixr:fieldRef id="415" name="ProgPeriodInterval"/>
+            <fixr:fieldRef id="416" name="IncTaxInd"/>
+            <fixr:fieldRef id="121" name="ForexReq"/>
+            <fixr:fieldRef id="417" name="NumBidders"/>
+            <fixr:fieldRef id="75" name="TradeDate"/>
+            <fixr:fieldRef id="418" name="TradeType" presence="required"/>
+            <fixr:fieldRef id="419" name="BasisPxType" presence="required"/>
+            <fixr:fieldRef id="443" name="StrikeTime"/>
+            <fixr:fieldRef id="58" name="Text"/>
+            <fixr:fieldRef id="354" name="EncodedTextLen"/>
+            <fixr:fieldRef id="355" name="EncodedText"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="BidResponse" msgType="l" id="45">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="390" name="BidID"/>
+            <fixr:fieldRef id="391" name="ClientBidID"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+      <fixr:message name="ListStrikePrice" msgType="m" id="46">
+         <fixr:structure>
+            <fixr:componentRef id="1001" name="StandardHeader" presence="required"/>
+            <fixr:fieldRef id="66" name="ListID" presence="required"/>
+            <fixr:fieldRef id="422" name="TotNoStrikes" presence="required"/>
+            <fixr:componentRef id="1002" name="StandardTrailer" presence="required"/>
+         </fixr:structure>
+      </fixr:message>
+   </fixr:messages>
+</fixr:repository>

@@ -1,0 +1,15 @@
+1000 CommissionData
+1001 DiscretionInstructions
+1002 FinancingDetails
+1003 Instrument
+1004 InstrumentExtension
+1005 InstrumentLeg
+1006 LegBenchmarkCurveData
+1011 OrderQtyData
+1013 PegInstructions
+1016 SettlInstructionsData
+1018 SpreadOrBenchmarkCurveData
+1021 UnderlyingInstrument
+1022 YieldData
+1024 StandardHeader
+1025 StandardTrailer
