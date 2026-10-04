@@ -16,6 +16,10 @@
           <xsl:value-of select="@id"/>
           <xsl:text> </xsl:text>
           <xsl:value-of select="@name"/>
+          <xsl:if test="$elementType = 'message'">
+            <xsl:text> </xsl:text>
+            <xsl:value-of select="@msgType"/>
+          </xsl:if>
           <xsl:if test="position() != last()">
             <xsl:text>&#10;</xsl:text>
           </xsl:if>

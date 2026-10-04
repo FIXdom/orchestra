@@ -1,181 +1,181 @@
-1 Heartbeat
-2 TestRequest
-3 ResendRequest
-4 Reject
-5 SequenceReset
-6 Logout
-7 IOI
-8 Advertisement
-9 ExecutionReport
-10 OrderCancelReject
-11 Logon
-12 News
-13 Email
-14 NewOrderSingle
-15 NewOrderList
-16 OrderCancelRequest
-17 OrderCancelReplaceRequest
-18 OrderStatusRequest
-19 AllocationInstruction
-20 ListCancelRequest
-21 ListExecute
-22 ListStatusRequest
-23 ListStatus
-24 AllocationInstructionAck
-25 DontKnowTrade
-26 QuoteRequest
-27 Quote
-28 SettlementInstructions
-29 MarketDataRequest
-30 MarketDataSnapshotFullRefresh
-31 MarketDataIncrementalRefresh
-32 MarketDataRequestReject
-33 QuoteCancel
-34 QuoteStatusRequest
-35 MassQuoteAck
-36 SecurityDefinitionRequest
-37 SecurityDefinition
-38 SecurityStatusRequest
-39 SecurityStatus
-40 TradingSessionStatusRequest
-41 TradingSessionStatus
-42 MassQuote
-43 BusinessMessageReject
-44 BidRequest
-45 BidResponse
-46 ListStrikePrice
-47 XMLnonFIX
-48 RegistrationInstructions
-49 RegistrationInstructionsResponse
-50 OrderMassCancelRequest
-51 OrderMassCancelReport
-52 NewOrderCross
-53 CrossOrderCancelReplaceRequest
-54 CrossOrderCancelRequest
-55 SecurityTypeRequest
-56 SecurityTypes
-57 SecurityListRequest
-58 SecurityList
-59 DerivativeSecurityListRequest
-60 DerivativeSecurityList
-61 NewOrderMultileg
-62 MultilegOrderCancelReplace
-63 TradeCaptureReportRequest
-64 TradeCaptureReport
-65 OrderMassStatusRequest
-66 QuoteRequestReject
-67 RFQRequest
-68 QuoteStatusReport
-69 QuoteResponse
-70 Confirmation
-71 PositionMaintenanceRequest
-72 PositionMaintenanceReport
-73 RequestForPositions
-74 RequestForPositionsAck
-75 PositionReport
-76 TradeCaptureReportRequestAck
-77 TradeCaptureReportAck
-78 AllocationReport
-79 AllocationReportAck
-80 ConfirmationAck
-81 SettlementInstructionRequest
-82 AssignmentReport
-83 CollateralRequest
-84 CollateralAssignment
-85 CollateralResponse
-86 CollateralReport
-87 CollateralInquiry
-88 NetworkCounterpartySystemStatusRequest
-89 NetworkCounterpartySystemStatusResponse
-90 UserRequest
-91 UserResponse
-92 CollateralInquiryAck
-93 ConfirmationRequest
-94 ContraryIntentionReport
-95 SecurityDefinitionUpdateReport
-96 SecurityListUpdateReport
-97 AdjustedPositionReport
-98 AllocationInstructionAlert
-99 ExecutionAck
-100 TradingSessionList
-101 TradingSessionListRequest
-102 SettlementObligationReport
-103 DerivativeSecurityListUpdateReport
-104 TradingSessionListUpdateReport
-105 MarketDefinitionRequest
-106 MarketDefinition
-107 MarketDefinitionUpdateReport
-108 ApplicationMessageRequest
-109 ApplicationMessageRequestAck
-110 ApplicationMessageReport
-111 OrderMassActionReport
-112 OrderMassActionRequest
-113 UserNotification
-114 StreamAssignmentRequest
-115 StreamAssignmentReport
-116 StreamAssignmentReportACK
-117 PartyDetailsListRequest
-118 PartyDetailsListReport
-119 MarginRequirementInquiry
-120 MarginRequirementInquiryAck
-121 MarginRequirementReport
-122 PartyDetailsListUpdateReport
-123 PartyRiskLimitsRequest
-124 PartyRiskLimitsReport
-125 SecurityMassStatusRequest
-126 SecurityMassStatus
-127 AccountSummaryReport
-128 PartyRiskLimitsUpdateReport
-129 PartyRiskLimitsDefinitionRequest
-130 PartyRiskLimitsDefinitionRequestAck
-131 PartyEntitlementsRequest
-132 PartyEntitlementsReport
-133 QuoteAck
-134 PartyDetailsDefinitionRequest
-135 PartyDetailsDefinitionRequestAck
-136 PartyEntitlementsUpdateReport
-137 PartyEntitlementsDefinitionRequest
-138 PartyEntitlementsDefinitionRequestAck
-139 TradeMatchReport
-140 TradeMatchReportAck
-141 PartyRiskLimitsReportAck
-142 PartyRiskLimitCheckRequest
-143 PartyRiskLimitCheckRequestAck
-144 PartyActionRequest
-145 PartyActionReport
-146 MassOrder
-147 MassOrderAck
-148 PositionTransferInstruction
-149 PositionTransferInstructionAck
-150 PositionTransferReport
-151 MarketDataStatisticsRequest
-152 MarketDataStatisticsReport
-153 CollateralReportAck
-154 MarketDataReport
-155 CrossRequest
-156 CrossRequestAck
-157 AllocationInstructionAlertRequest
-158 AllocationInstructionAlertRequestAck
-159 TradeAggregationRequest
-160 TradeAggregationReport
-161 PayManagementReport
-162 PayManagementReportAck
-163 PayManagementRequest
-164 PayManagementRequestAck
-165 SettlementStatusRequest
-166 SettlementStatusRequestAck
-167 SettlementStatusReport
-168 SettlementStatusReportAck
-169 SecurityRiskMetricsReport
-170 AlgoCertificateRequest
-171 AlgoCertificateRequestAck
-172 AlgoCertificateReport
-173 AlgoCertificateReportAck
-174 TestSuiteDefinitionRequest
-175 TestSuiteDefinitionRequestAck
-176 TestActionRequest
-177 TestActionRequestAck
-178 TestActionReport
-179 MarketDataAck
-180 SecurityStatusAck
-181 TradingSessionStatusAck
+1 Heartbeat 0
+2 TestRequest 1
+3 ResendRequest 2
+4 Reject 3
+5 SequenceReset 4
+6 Logout 5
+7 IOI 6
+8 Advertisement 7
+9 ExecutionReport 8
+10 OrderCancelReject 9
+11 Logon A
+12 News B
+13 Email C
+14 NewOrderSingle D
+15 NewOrderList E
+16 OrderCancelRequest F
+17 OrderCancelReplaceRequest G
+18 OrderStatusRequest H
+19 AllocationInstruction J
+20 ListCancelRequest K
+21 ListExecute L
+22 ListStatusRequest M
+23 ListStatus N
+24 AllocationInstructionAck P
+25 DontKnowTrade Q
+26 QuoteRequest R
+27 Quote S
+28 SettlementInstructions T
+29 MarketDataRequest V
+30 MarketDataSnapshotFullRefresh W
+31 MarketDataIncrementalRefresh X
+32 MarketDataRequestReject Y
+33 QuoteCancel Z
+34 QuoteStatusRequest a
+35 MassQuoteAck b
+36 SecurityDefinitionRequest c
+37 SecurityDefinition d
+38 SecurityStatusRequest e
+39 SecurityStatus f
+40 TradingSessionStatusRequest g
+41 TradingSessionStatus h
+42 MassQuote i
+43 BusinessMessageReject j
+44 BidRequest k
+45 BidResponse l
+46 ListStrikePrice m
+47 XMLnonFIX n
+48 RegistrationInstructions o
+49 RegistrationInstructionsResponse p
+50 OrderMassCancelRequest q
+51 OrderMassCancelReport r
+52 NewOrderCross s
+53 CrossOrderCancelReplaceRequest t
+54 CrossOrderCancelRequest u
+55 SecurityTypeRequest v
+56 SecurityTypes w
+57 SecurityListRequest x
+58 SecurityList y
+59 DerivativeSecurityListRequest z
+60 DerivativeSecurityList AA
+61 NewOrderMultileg AB
+62 MultilegOrderCancelReplace AC
+63 TradeCaptureReportRequest AD
+64 TradeCaptureReport AE
+65 OrderMassStatusRequest AF
+66 QuoteRequestReject AG
+67 RFQRequest AH
+68 QuoteStatusReport AI
+69 QuoteResponse AJ
+70 Confirmation AK
+71 PositionMaintenanceRequest AL
+72 PositionMaintenanceReport AM
+73 RequestForPositions AN
+74 RequestForPositionsAck AO
+75 PositionReport AP
+76 TradeCaptureReportRequestAck AQ
+77 TradeCaptureReportAck AR
+78 AllocationReport AS
+79 AllocationReportAck AT
+80 ConfirmationAck AU
+81 SettlementInstructionRequest AV
+82 AssignmentReport AW
+83 CollateralRequest AX
+84 CollateralAssignment AY
+85 CollateralResponse AZ
+86 CollateralReport BA
+87 CollateralInquiry BB
+88 NetworkCounterpartySystemStatusRequest BC
+89 NetworkCounterpartySystemStatusResponse BD
+90 UserRequest BE
+91 UserResponse BF
+92 CollateralInquiryAck BG
+93 ConfirmationRequest BH
+94 ContraryIntentionReport BO
+95 SecurityDefinitionUpdateReport BP
+96 SecurityListUpdateReport BK
+97 AdjustedPositionReport BL
+98 AllocationInstructionAlert BM
+99 ExecutionAck BN
+100 TradingSessionList BJ
+101 TradingSessionListRequest BI
+102 SettlementObligationReport BQ
+103 DerivativeSecurityListUpdateReport BR
+104 TradingSessionListUpdateReport BS
+105 MarketDefinitionRequest BT
+106 MarketDefinition BU
+107 MarketDefinitionUpdateReport BV
+108 ApplicationMessageRequest BW
+109 ApplicationMessageRequestAck BX
+110 ApplicationMessageReport BY
+111 OrderMassActionReport BZ
+112 OrderMassActionRequest CA
+113 UserNotification CB
+114 StreamAssignmentRequest CC
+115 StreamAssignmentReport CD
+116 StreamAssignmentReportACK CE
+117 PartyDetailsListRequest CF
+118 PartyDetailsListReport CG
+119 MarginRequirementInquiry CH
+120 MarginRequirementInquiryAck CI
+121 MarginRequirementReport CJ
+122 PartyDetailsListUpdateReport CK
+123 PartyRiskLimitsRequest CL
+124 PartyRiskLimitsReport CM
+125 SecurityMassStatusRequest CN
+126 SecurityMassStatus CO
+127 AccountSummaryReport CQ
+128 PartyRiskLimitsUpdateReport CR
+129 PartyRiskLimitsDefinitionRequest CS
+130 PartyRiskLimitsDefinitionRequestAck CT
+131 PartyEntitlementsRequest CU
+132 PartyEntitlementsReport CV
+133 QuoteAck CW
+134 PartyDetailsDefinitionRequest CX
+135 PartyDetailsDefinitionRequestAck CY
+136 PartyEntitlementsUpdateReport CZ
+137 PartyEntitlementsDefinitionRequest DA
+138 PartyEntitlementsDefinitionRequestAck DB
+139 TradeMatchReport DC
+140 TradeMatchReportAck DD
+141 PartyRiskLimitsReportAck DE
+142 PartyRiskLimitCheckRequest DF
+143 PartyRiskLimitCheckRequestAck DG
+144 PartyActionRequest DH
+145 PartyActionReport DI
+146 MassOrder DJ
+147 MassOrderAck DK
+148 PositionTransferInstruction DL
+149 PositionTransferInstructionAck DM
+150 PositionTransferReport DN
+151 MarketDataStatisticsRequest DO
+152 MarketDataStatisticsReport DP
+153 CollateralReportAck DQ
+154 MarketDataReport DR
+155 CrossRequest DS
+156 CrossRequestAck DT
+157 AllocationInstructionAlertRequest DU
+158 AllocationInstructionAlertRequestAck DV
+159 TradeAggregationRequest DW
+160 TradeAggregationReport DX
+161 PayManagementReport EA
+162 PayManagementReportAck EB
+163 PayManagementRequest DY
+164 PayManagementRequestAck DZ
+165 SettlementStatusRequest EC
+166 SettlementStatusRequestAck ED
+167 SettlementStatusReport EE
+168 SettlementStatusReportAck EF
+169 SecurityRiskMetricsReport EG
+170 AlgoCertificateRequest EH
+171 AlgoCertificateRequestAck EI
+172 AlgoCertificateReport EJ
+173 AlgoCertificateReportAck EK
+174 TestSuiteDefinitionRequest EL
+175 TestSuiteDefinitionRequestAck EM
+176 TestActionRequest EN
+177 TestActionRequestAck EO
+178 TestActionReport EP
+179 MarketDataAck EQ
+180 SecurityStatusAck ER
+181 TradingSessionStatusAck ES

@@ -16,6 +16,7 @@ java -jar "$jarfile" -xsl:extractElements.xsl -s:"$1.xml" elementType="group" ou
 java -jar "$jarfile" -xsl:extractElements.xsl -s:"$1.xml" elementType="component" outputFile="../target/$filename-components.txt"
 java -jar "$jarfile" -xsl:extractElements.xsl -s:"$1.xml" elementType="field" outputFile="../target/$filename-fields.txt"
 java -jar "$jarfile" -xsl:extractElements.xsl -s:"$1.xml" elementType="codeSet" outputFile="../target/$filename-codeSets.txt"
+java -jar "$jarfile" -xsl:extractElements.xsl -s:"$1.xml" elementType="code" outputFile="../target/$filename-codes.txt"
 
 echo "\nENDED $(date)"
 endEpoch=$(date '+%s')
