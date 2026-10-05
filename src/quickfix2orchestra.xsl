@@ -213,8 +213,7 @@
 
       <fixr:messages>
         <xsl:for-each select="/fix/messages/message">
-          <fixr:message name="{@name}" msgType="{@msgtype}"
-                        id="{$message-identifier(@name)}">
+          <fixr:message id="{$message-identifier(@name)}" name="{@name}" msgType="{@msgtype}">
             <fixr:structure>
               <fixr:componentRef id="{$component-identifier('StandardHeader')}" name="StandardHeader" presence="required"/>
               <xsl:for-each select="*">
@@ -259,6 +258,7 @@
     </xsl:if>
   </xsl:template>
 
+  <!-- Names of component elements are added for convenience (supported by Orchestra v1.1) -->
   <xsl:template name="component-ref">
     <xsl:param name="component-name"/><xsl:param name="required"/>
     <xsl:variable name="c" select="key('component-by-name',$component-name)[1]"/>
@@ -273,6 +273,7 @@
     </xsl:if>
   </xsl:template>
 
+  <!-- Names of group elements are added for convenience (supported by Orchestra v1.1) -->
   <xsl:template name="group-ref">
     <xsl:param name="group-name"/><xsl:param name="required"/>
     <xsl:variable name="g" select="key('group-by-name',$group-name)[1]"/>
@@ -333,11 +334,6 @@
     </xsl:choose>
   </xsl:template>
 
-  <!-- TODO
-      - correct base attributes, e.g. Length (check FIX Latest)
-      - add attribute builtin
-      - add attribute baseType where applicable
-  -->
   <xsl:template name="datatype">
     <xsl:param name="quickfix-type"/>
     <xsl:variable name="name"><xsl:call-template name="datatype-name">
